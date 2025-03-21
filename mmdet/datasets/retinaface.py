@@ -17,10 +17,10 @@ except AssertionError:
 @DATASETS.register_module()
 class RetinaFaceDataset(CustomDataset):
 
-    CLASSES = ('FG', )
+    CLASSES = ('qrcode', 'barcode', 'aruco')
 
     def __init__(self, min_size=None, **kwargs):
-        self.NK = 5
+        self.NK = 3
         self.cat2label = {cat: i for i, cat in enumerate(self.CLASSES)}
         self.min_size = min_size
         self.gt_path = kwargs.get('gt_path')
@@ -40,7 +40,7 @@ class RetinaFaceDataset(CustomDataset):
         if len(values) > 4:
             if len(values) > 5:
                 kps = np.array(
-                    values[4:19], dtype=np.float32).reshape((self.NK, 3))
+                    values[4:13], dtype=np.float32).reshape((self.NK, 3))
                 for li in range(kps.shape[0]):
                     if (kps[li, :] == -1).all():
                         kps[li][2] = 0.0  # weight = 0, ignore
@@ -54,7 +54,7 @@ class RetinaFaceDataset(CustomDataset):
         else:
             assert self.test_mode
 
-        return dict(bbox=bbox, kps=kps, ignore=ignore, cat='FG')
+        return dict(bbox=bbox, kps=kps, ignore=ignore)
 
     def load_annotations(self, ann_file):
         """Load annotation from COCO style annotation file.
@@ -74,8 +74,9 @@ class RetinaFaceDataset(CustomDataset):
                 name = value[0]
                 width = int(value[1])
                 height = int(value[2])
-
-                bbox_map[name] = dict(width=width, height=height, objs=[])
+                # read image lebel
+                img_label = int(value[3])
+                bbox_map[name] = dict(width=width, height=height, label=img_label, objs=[])
                 continue
             assert name is not None
             assert name in bbox_map
@@ -86,12 +87,16 @@ class RetinaFaceDataset(CustomDataset):
             item = bbox_map[name]
             width = item['width']
             height = item['height']
+            # get images label
+            img_label = item['label']
             vals = item['objs']
             objs = []
             for line in vals:
                 data = self._parse_ann_line(line)
                 if data is None:
                     continue
+                # read label, turn to type name
+                data['cat'] = self.CLASSES[img_label]
                 objs.append(data)  # data is (bbox, kps, cat)
             if len(objs) == 0 and not self.test_mode:
                 continue
