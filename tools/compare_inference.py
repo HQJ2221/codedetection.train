@@ -160,20 +160,45 @@ def resize_img(img, mode):
     return det_img, det_scale
 
 
+# def draw(img, bboxes, kpss, out_path, with_kps=True):
+#     for i in range(bboxes.shape[0]):
+#         bbox = bboxes[i]
+#         x1, y1, x2, y2, score = bbox.astype(np.int32)
+#         cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
+#         if with_kps:
+#             if kpss is not None:
+#                 kps = kpss[i].reshape(-1, 2)
+#                 for kp in kps:
+#                     kp = kp.astype(np.int32)
+#                     cv2.circle(img, tuple(kp), 1, (255, 0, 0), 2)
+
+#     print('output:', out_path)
+#     cv2.imwrite(out_path, img)
+
 def draw(img, bboxes, kpss, out_path, with_kps=True):
     for i in range(bboxes.shape[0]):
         bbox = bboxes[i]
-        x1, y1, x2, y2, score = bbox.astype(np.int32)
+        x1, y1, x2, y2, score, cls_id = bbox.astype(np.int32)
+
+        # 画矩形框
         cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
-        if with_kps:
-            if kpss is not None:
-                kps = kpss[i].reshape(-1, 2)
-                for kp in kps:
-                    kp = kp.astype(np.int32)
-                    cv2.circle(img, tuple(kp), 1, (255, 0, 0), 2)
+
+        # 在框上方标注类别 ID 和置信度（百分比）
+        label = f'cls:{cls_id} conf:{score / 100:.2f}'
+        cv2.putText(
+            img, label, (x1, y1 - 5),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 255, 0), 1)
+
+        # 画关键点
+        if with_kps and kpss is not None:
+            kps = kpss[i].reshape(-1, 2)
+            for kp in kps:
+                kp = kp.astype(np.int32)
+                cv2.circle(img, tuple(kp), 1, (255, 0, 0), 2)
 
     print('output:', out_path)
     cv2.imwrite(out_path, img)
+
 
 
 class Timer:
@@ -338,81 +363,171 @@ class YUNET(Detector):
         self.taskname = 'yunet'
         self.priors_cache = []
         self.strides = [8, 16, 32]
-        self.NK = 5
+        self.NK = 3 #原始5
+
+#     def forward(self, img, score_thresh):
+#         self.time_engine.tic('forward_calc')
+
+#         input_size = tuple(img.shape[0:2][::-1])
+#         blob = np.transpose(img, [2, 0, 1]).astype(np.float32)[np.newaxis,
+#                                                                ...].copy()
+#         self.time_engine.toc('forward_calc')
+
+#         self.time_engine.tic('forward_run')
+#         nets_out = self.session.run(None,
+#                                     {self.session.get_inputs()[0].name: blob})
+#         self.time_engine.toc('forward_run')
+
+#         self.time_engine.tic('forward_calc')
+#         scores, bboxes, kpss = [], [], []
+#         for idx, stride in enumerate(self.strides):
+#             cls_pred = nets_out[idx].reshape(-1, 1)
+#             obj_pred = nets_out[idx + len(self.strides)].reshape(-1, 1)
+#             reg_pred = nets_out[idx + len(self.strides) * 2].reshape(-1, 4)
+#             kps_pred = nets_out[idx + len(self.strides) * 3].reshape(
+#                 -1, self.NK * 2)
+
+#             anchor_centers = np.stack(
+#                 np.mgrid[:(input_size[1] // stride), :(input_size[0] //
+#                                                        stride)][::-1],
+#                 axis=-1)
+#             anchor_centers = (anchor_centers * stride).astype(
+#                 np.float32).reshape(-1, 2)
+
+#             bbox_cxy = reg_pred[:, :2] * stride + anchor_centers[:]
+#             bbox_wh = np.exp(reg_pred[:, 2:]) * stride
+#             tl_x = (bbox_cxy[:, 0] - bbox_wh[:, 0] / 2.)
+#             tl_y = (bbox_cxy[:, 1] - bbox_wh[:, 1] / 2.)
+#             br_x = (bbox_cxy[:, 0] + bbox_wh[:, 0] / 2.)
+#             br_y = (bbox_cxy[:, 1] + bbox_wh[:, 1] / 2.)
+
+#             bboxes.append(np.stack([tl_x, tl_y, br_x, br_y], -1))
+#             # for nk in range(self.NK):
+#             per_kps = np.concatenate(
+#                 [((kps_pred[:, [2 * i, 2 * i + 1]] * stride) + anchor_centers)
+#                  for i in range(self.NK)],
+#                 axis=-1)
+
+#             kpss.append(per_kps)
+#             scores.append(cls_pred * obj_pred)
+
+#         scores = np.concatenate(scores, axis=0).reshape(-1)
+#         bboxes = np.concatenate(bboxes, axis=0)
+#         kpss = np.concatenate(kpss, axis=0)
+#         score_mask = (scores > score_thresh)
+#         scores = scores[score_mask]
+#         bboxes = bboxes[score_mask]
+#         kpss = kpss[score_mask]
+#         self.time_engine.toc('forward_calc')
+#         return (bboxes, scores, kpss)
+
 
     def forward(self, img, score_thresh):
-        self.time_engine.tic('forward_calc')
+        input_size = tuple(img.shape[0:2][::-1])  # (W, H)
 
-        input_size = tuple(img.shape[0:2][::-1])
-        blob = np.transpose(img, [2, 0, 1]).astype(np.float32)[np.newaxis,
-                                                               ...].copy()
-        self.time_engine.toc('forward_calc')
+        blob = np.transpose(img, [2, 0, 1]).astype(np.float32)[np.newaxis, ...].copy()
+        print(f"[DEBUG] Input blob shape: {blob.shape}")
 
-        self.time_engine.tic('forward_run')
-        nets_out = self.session.run(None,
-                                    {self.session.get_inputs()[0].name: blob})
-        self.time_engine.toc('forward_run')
+        # 推理
+        nets_out = self.session.run(None, {self.session.get_inputs()[0].name: blob})
+        for i, out in enumerate(nets_out):
+            print(f"[DEBUG] nets_out[{i}]: shape = {out.shape}")
 
-        self.time_engine.tic('forward_calc')
-        scores, bboxes, kpss = [], [], []
+        scores, bboxes, kpss, labels = [], [], [], []
         for idx, stride in enumerate(self.strides):
-            cls_pred = nets_out[idx].reshape(-1, 1)
+            print(f"\n[INFO] === Processing stride {stride} (idx={idx}) ===")
+
+            # 分类预测为 (1, N, C) → squeeze → (N, C)
+            cls_pred_raw = nets_out[idx].squeeze(0)
             obj_pred = nets_out[idx + len(self.strides)].reshape(-1, 1)
             reg_pred = nets_out[idx + len(self.strides) * 2].reshape(-1, 4)
-            kps_pred = nets_out[idx + len(self.strides) * 3].reshape(
-                -1, self.NK * 2)
+            kps_pred = nets_out[idx + len(self.strides) * 3].reshape(-1, self.NK * 2)
 
+            # 检查 shape 是否一致
+            if cls_pred_raw.shape[0] != obj_pred.shape[0]:
+                print(f"[WARNING] Shape mismatch at idx={idx}, skipping this scale.")
+                continue
+
+            # 分类得分：每个 anchor 取最大类得分
+            cls_score = np.max(cls_pred_raw, axis=1, keepdims=True)  # shape: (N, 1)
+            cls_label = np.argmax(cls_pred_raw, axis=1)  # shape: (N,)
+
+            # 构造 anchor center
             anchor_centers = np.stack(
-                np.mgrid[:(input_size[1] // stride), :(input_size[0] //
-                                                       stride)][::-1],
-                axis=-1)
-            anchor_centers = (anchor_centers * stride).astype(
-                np.float32).reshape(-1, 2)
+                np.mgrid[:(input_size[1] // stride), :(input_size[0] // stride)][::-1],
+                axis=-1
+            )
+            anchor_centers = (anchor_centers * stride).astype(np.float32).reshape(-1, 2)
 
-            bbox_cxy = reg_pred[:, :2] * stride + anchor_centers[:]
+            bbox_cxy = reg_pred[:, :2] * stride + anchor_centers
             bbox_wh = np.exp(reg_pred[:, 2:]) * stride
-            tl_x = (bbox_cxy[:, 0] - bbox_wh[:, 0] / 2.)
-            tl_y = (bbox_cxy[:, 1] - bbox_wh[:, 1] / 2.)
-            br_x = (bbox_cxy[:, 0] + bbox_wh[:, 0] / 2.)
-            br_y = (bbox_cxy[:, 1] + bbox_wh[:, 1] / 2.)
-
+            tl_x = bbox_cxy[:, 0] - bbox_wh[:, 0] / 2.
+            tl_y = bbox_cxy[:, 1] - bbox_wh[:, 1] / 2.
+            br_x = bbox_cxy[:, 0] + bbox_wh[:, 0] / 2.
+            br_y = bbox_cxy[:, 1] + bbox_wh[:, 1] / 2.
             bboxes.append(np.stack([tl_x, tl_y, br_x, br_y], -1))
-            # for nk in range(self.NK):
+
+            # 解码关键点
             per_kps = np.concatenate(
                 [((kps_pred[:, [2 * i, 2 * i + 1]] * stride) + anchor_centers)
                  for i in range(self.NK)],
                 axis=-1)
-
             kpss.append(per_kps)
-            scores.append(cls_pred * obj_pred)
 
+            # 最终得分 & 标签
+            scores.append(cls_score * obj_pred)
+            labels.append(cls_label)
+
+        # 全部分支都跳过了？→ 返回空值避免 crash
+        if len(scores) == 0:
+            print("[ERROR] No valid outputs due to shape mismatch.")
+            return np.zeros((0, 6)), np.zeros((0, self.NK * 2))
+
+        # 合并所有尺度
         scores = np.concatenate(scores, axis=0).reshape(-1)
         bboxes = np.concatenate(bboxes, axis=0)
         kpss = np.concatenate(kpss, axis=0)
+        labels = np.concatenate(labels, axis=0).reshape(-1, 1)  # shape: (N, 1)
+
+        # 筛选得分
         score_mask = (scores > score_thresh)
         scores = scores[score_mask]
         bboxes = bboxes[score_mask]
         kpss = kpss[score_mask]
-        self.time_engine.toc('forward_calc')
-        return (bboxes, scores, kpss)
+        labels = labels[score_mask]
+
+        # 将 label 拼接到 bbox 后：x1, y1, x2, y2, score, class_id
+        bboxes = np.hstack((bboxes, scores[:, None], labels))
+
+        print(f"[INFO] Final detections: {len(scores)} faces")
+        return bboxes, kpss
+
 
     def detect(self, img, score_thresh=0.5, mode='ORIGIN'):
         self.time_engine.tic('preprocess')
         det_img, det_scale = resize_img(img, mode)
-        # det_img = cv2.resize(img, (640, 640))
         self.time_engine.toc('preprocess')
 
-        bboxes, scores, kpss = self.forward(det_img, score_thresh)
+        # 正确接收两个返回值
+        bboxes, kpss = self.forward(det_img, score_thresh)
 
         self.time_engine.tic('postprocess')
-        bboxes /= det_scale
+
+        # 将 bbox 和 kpss 都缩放回原图尺寸
+        bboxes[:, :4] /= det_scale
         kpss /= det_scale
-        pre_det = np.hstack((bboxes, scores[:, None]))
+
+        # 做 NMS：对 bboxes[:, :4] 做 NMS，用 bboxes[:, 4] 做置信度
+        pre_det = bboxes[:, :5]  # x1, y1, x2, y2, score
         keep = nms(pre_det, self.nms_thresh)
+
+        # 过滤
+        bboxes = bboxes[keep, :]  # 包括 class_id
         kpss = kpss[keep, :]
-        bboxes = pre_det[keep, :]
+
         self.time_engine.toc('postprocess')
         return bboxes, kpss
+
 
 
 class SCRFD(Detector):
