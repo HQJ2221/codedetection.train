@@ -160,21 +160,6 @@ def resize_img(img, mode):
     return det_img, det_scale
 
 
-# def draw(img, bboxes, kpss, out_path, with_kps=True):
-#     for i in range(bboxes.shape[0]):
-#         bbox = bboxes[i]
-#         x1, y1, x2, y2, score = bbox.astype(np.int32)
-#         cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
-#         if with_kps:
-#             if kpss is not None:
-#                 kps = kpss[i].reshape(-1, 2)
-#                 for kp in kps:
-#                     kp = kp.astype(np.int32)
-#                     cv2.circle(img, tuple(kp), 1, (255, 0, 0), 2)
-
-#     print('output:', out_path)
-#     cv2.imwrite(out_path, img)
-
 def draw(img, bboxes, kpss, out_path, with_kps=True):
     for i in range(bboxes.shape[0]):
         bbox = bboxes[i]
@@ -363,63 +348,8 @@ class YUNET(Detector):
         self.taskname = 'yunet'
         self.priors_cache = []
         self.strides = [8, 16, 32]
-        self.NK = 3 #原始5
+        self.NK = 4 #原始5
 
-#     def forward(self, img, score_thresh):
-#         self.time_engine.tic('forward_calc')
-
-#         input_size = tuple(img.shape[0:2][::-1])
-#         blob = np.transpose(img, [2, 0, 1]).astype(np.float32)[np.newaxis,
-#                                                                ...].copy()
-#         self.time_engine.toc('forward_calc')
-
-#         self.time_engine.tic('forward_run')
-#         nets_out = self.session.run(None,
-#                                     {self.session.get_inputs()[0].name: blob})
-#         self.time_engine.toc('forward_run')
-
-#         self.time_engine.tic('forward_calc')
-#         scores, bboxes, kpss = [], [], []
-#         for idx, stride in enumerate(self.strides):
-#             cls_pred = nets_out[idx].reshape(-1, 1)
-#             obj_pred = nets_out[idx + len(self.strides)].reshape(-1, 1)
-#             reg_pred = nets_out[idx + len(self.strides) * 2].reshape(-1, 4)
-#             kps_pred = nets_out[idx + len(self.strides) * 3].reshape(
-#                 -1, self.NK * 2)
-
-#             anchor_centers = np.stack(
-#                 np.mgrid[:(input_size[1] // stride), :(input_size[0] //
-#                                                        stride)][::-1],
-#                 axis=-1)
-#             anchor_centers = (anchor_centers * stride).astype(
-#                 np.float32).reshape(-1, 2)
-
-#             bbox_cxy = reg_pred[:, :2] * stride + anchor_centers[:]
-#             bbox_wh = np.exp(reg_pred[:, 2:]) * stride
-#             tl_x = (bbox_cxy[:, 0] - bbox_wh[:, 0] / 2.)
-#             tl_y = (bbox_cxy[:, 1] - bbox_wh[:, 1] / 2.)
-#             br_x = (bbox_cxy[:, 0] + bbox_wh[:, 0] / 2.)
-#             br_y = (bbox_cxy[:, 1] + bbox_wh[:, 1] / 2.)
-
-#             bboxes.append(np.stack([tl_x, tl_y, br_x, br_y], -1))
-#             # for nk in range(self.NK):
-#             per_kps = np.concatenate(
-#                 [((kps_pred[:, [2 * i, 2 * i + 1]] * stride) + anchor_centers)
-#                  for i in range(self.NK)],
-#                 axis=-1)
-
-#             kpss.append(per_kps)
-#             scores.append(cls_pred * obj_pred)
-
-#         scores = np.concatenate(scores, axis=0).reshape(-1)
-#         bboxes = np.concatenate(bboxes, axis=0)
-#         kpss = np.concatenate(kpss, axis=0)
-#         score_mask = (scores > score_thresh)
-#         scores = scores[score_mask]
-#         bboxes = bboxes[score_mask]
-#         kpss = kpss[score_mask]
-#         self.time_engine.toc('forward_calc')
-#         return (bboxes, scores, kpss)
 
 
     def forward(self, img, score_thresh):
