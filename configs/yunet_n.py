@@ -126,7 +126,7 @@ model = dict(
             loss_weight=1.0),
         loss_bbox=dict(type='EIoULoss', loss_weight=5.0, reduction='sum'),
         use_kps=True,
-        kps_num=3,  # qrcode use 3 kps
+        kps_num=4,  # qrcode use 3 kps
         loss_kps=dict(
             type='SmoothL1Loss', beta=0.1111111111111111, loss_weight=0.1),
         loss_obj=dict(
