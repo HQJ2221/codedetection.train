@@ -474,12 +474,12 @@ class RandomFlip:
 
         assert direction == 'horizontal'
         assert keypointss.shape[-1] == 3
-        assert keypointss.shape[1] == 3  # assert code detection kps are 3
+        assert keypointss.shape[1] == 4  # assert code detection kps are 3
 
         assert keypointss.ndim == 3
         flipped = keypointss.copy()
         # flip_order = [1, 0, 2, 4, 3]
-        flip_order = [1, 0, 2]
+        flip_order = [1, 0, 2, 3]
         for idx, a in enumerate(flip_order):
             flipped[:, idx, :] = keypointss[:, a, :]
         w = img_shape[1]
