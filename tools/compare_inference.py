@@ -163,26 +163,29 @@ def resize_img(img, mode):
 def draw(img, bboxes, kpss, out_path, with_kps=True):
     for i in range(bboxes.shape[0]):
         bbox = bboxes[i]
-        x1, y1, x2, y2, score, cls_id = bbox.astype(np.int32)
+        x1, y1, x2, y2 = bbox[:4].astype(np.int32)
+        score = bbox[4]
+        cls_id = int(bbox[5])
 
         # 画矩形框
         cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
 
-        # 在框上方标注类别 ID 和置信度（百分比）
-        label = f'cls:{cls_id} conf:{score / 100:.2f}'
+        # 标注类别和置信度
+        label = f'cls:{cls_id} {score:.2f}'
         cv2.putText(
             img, label, (x1, y1 - 5),
             cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 255, 0), 1)
 
-        # 画关键点
-        if with_kps and kpss is not None:
-            kps = kpss[i].reshape(-1, 2)
-            for kp in kps:
-                kp = kp.astype(np.int32)
-                cv2.circle(img, tuple(kp), 1, (255, 0, 0), 2)
+        # # 可选画关键点
+        # if with_kps and kpss is not None:
+        #     kps = kpss[i].reshape(-1, 2)
+        #     for kp in kps:
+        #         kp = kp.astype(np.int32)
+        #         cv2.circle(img, tuple(kp), 1, (255, 0, 0), 2)
 
     print('output:', out_path)
     cv2.imwrite(out_path, img)
+
 
 
 
