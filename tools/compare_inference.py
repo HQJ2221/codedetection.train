@@ -388,6 +388,7 @@ class YUNET(Detector):
                 axis=-1
             )
             anchor_centers = (anchor_centers * stride).astype(np.float32).reshape(-1, 2)
+            print(f"[DEBUG] stride={stride} | kps_pred.shape={kps_pred.shape} | anchors={anchor_centers.shape}")
 
             bbox_cxy = reg_pred[:, :2] * stride + anchor_centers
             bbox_wh = np.exp(reg_pred[:, 2:]) * stride
@@ -910,4 +911,4 @@ if __name__ == '__main__':
         score_thresh=args.score_thresh,
         mode=args.mode,
         image=args.image,
-        out_path='./work_dirs/sample/')
+        out_path='./')
