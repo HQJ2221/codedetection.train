@@ -12,7 +12,7 @@ import scipy
 import torch.utils.data as data
 from tqdm import tqdm
 
-from mmdet.core.evaluation import wider_evaluation
+from code_evaluation import wider_evaluation
 
 
 def softmax(z):
@@ -183,7 +183,7 @@ def draw(img, bboxes, kpss, out_path, with_kps=True):
         #         kp = kp.astype(np.int32)
         #         cv2.circle(img, tuple(kp), 1, (255, 0, 0), 2)
 
-    print('output:', out_path)
+    # print('output:', out_path)
     cv2.imwrite(out_path, img)
 
 
@@ -270,7 +270,7 @@ class TimeEngine:
 class WIDERFace(data.Dataset):
     """Dataset class for WIDER Face dataset."""
 
-    def __init__(self, root, split='val'):
+    def __init__(self, root, split='test'):
         self.root = root
         self.split = split
         assert self.root is not None
@@ -284,7 +284,7 @@ class WIDERFace(data.Dataset):
             'val':
             os.path.join(self.root, 'wider_face_split', 'wider_face_val.mat'),
             'test':
-            os.path.join(self.root, 'wider_face_split', 'wider_face_test.mat')
+            os.path.join(self.root, 'labelv2/val/gt', 'output.mat')
         }
 
         self.img_list, self.num_img = self.load_list()
@@ -359,16 +359,16 @@ class YUNET(Detector):
         input_size = tuple(img.shape[0:2][::-1])  # (W, H)
 
         blob = np.transpose(img, [2, 0, 1]).astype(np.float32)[np.newaxis, ...].copy()
-        print(f"[DEBUG] Input blob shape: {blob.shape}")
+        # print(f"[DEBUG] Input blob shape: {blob.shape}")
 
         # 推理
         nets_out = self.session.run(None, {self.session.get_inputs()[0].name: blob})
-        for i, out in enumerate(nets_out):
-            print(f"[DEBUG] nets_out[{i}]: shape = {out.shape}")
+        # for i, out in enumerate(nets_out):
+            # print(f"[DEBUG] nets_out[{i}]: shape = {out.shape}")
 
         scores, bboxes, kpss, labels = [], [], [], []
         for idx, stride in enumerate(self.strides):
-            print(f"\n[INFO] === Processing stride {stride} (idx={idx}) ===")
+            # print(f"\n[INFO] === Processing stride {stride} (idx={idx}) ===")
 
             # 分类预测为 (1, N, C) → squeeze → (N, C)
             cls_pred_raw = nets_out[idx].squeeze(0)
@@ -391,7 +391,7 @@ class YUNET(Detector):
                 axis=-1
             )
             anchor_centers = (anchor_centers * stride).astype(np.float32).reshape(-1, 2)
-            print(f"[DEBUG] stride={stride} | kps_pred.shape={kps_pred.shape} | anchors={anchor_centers.shape}")
+            # print(f"[DEBUG] stride={stride} | kps_pred.shape={kps_pred.shape} | anchors={anchor_centers.shape}")
 
             bbox_cxy = reg_pred[:, :2] * stride + anchor_centers
             bbox_wh = np.exp(reg_pred[:, 2:]) * stride
@@ -433,7 +433,7 @@ class YUNET(Detector):
         # 将 label 拼接到 bbox 后：x1, y1, x2, y2, score, class_id
         bboxes = np.hstack((bboxes, scores[:, None], labels))
 
-        print(f"[INFO] Final detections: {len(scores)} faces")
+        # print(f"[INFO] Final detections: {len(scores)} faces")
         return bboxes, kpss
 
 
@@ -799,32 +799,33 @@ def onnx_eval(detector,
               out_path=None):
     if eval:
         widerface_root = './data/widerface/'
-        testloader = WIDERFace(split='val', root=widerface_root)
+        testloader = WIDERFace(split='test', root=widerface_root)
         results = {}
         for idx in tqdm(range(len(testloader))):
             img, event_name, img_name = testloader[idx]
             xywhs, kpss = detector.detect(
                 img, score_thresh=score_thresh, mode=mode)
-            w = xywhs[:, 2] - xywhs[:, 0]
-            h = xywhs[:, 3] - xywhs[:, 1]
-            xywhs[:, 2] = w
-            xywhs[:, 3] = h
+            # w = xywhs[:, 2] - xywhs[:, 0]
+            # h = xywhs[:, 3] - xywhs[:, 1]
+            # xywhs[:, 2] = w
+            # xywhs[:, 3] = h
             if event_name not in results:
                 results[event_name] = {}
             results[event_name][img_name.rstrip('.jpg')] = xywhs
-
-        run_epochs = detector.time_engine.container.get('forward_run').epochs
-        print(f'Eval in {run_epochs}:')
+        
+        run_epochs = 1
+        # run_epochs = detector.time_engine.container.get('forward_run').epochs
+        # print(f'Eval in {run_epochs}:')
         for k, v in detector.time_engine.container.items():
             print(f'{k} : {v.total_second() / run_epochs}')
         print(f'Total: {detector.time_engine.total_second() / run_epochs}')
         print(f'FPS: {run_epochs / detector.time_engine.total_second()}')
 
-        aps = wider_evaluation(
+        ap = wider_evaluation(
             pred=results,
-            gt_path=os.path.join(widerface_root, 'labelv2', 'val', 'gt'),
-            iou_thresh=0.5)
-        print('APS:', aps)
+            gt_path=os.path.join(widerface_root, 'labelv2', 'val', 'gt'),)
+        print('AP:', ap)
+
 
     else:
         assert image is not None
@@ -855,7 +856,7 @@ def onnx_eval(detector,
             bboxes,
             kpss,
             out_path=os.path.join(
-                out_path, prefix + '_' + mode + os.path.basename(image)))
+                out_path, prefix + '_' + mode + '_' + os.path.basename(image)))
 
 
 def parse_args():
@@ -907,6 +908,7 @@ if __name__ == '__main__':
     else:
         raise ValueError('Unknown detector!')
 
+    start = time()
     onnx_eval(
         detector,
         prefix,
@@ -914,4 +916,4 @@ if __name__ == '__main__':
         score_thresh=args.score_thresh,
         mode=args.mode,
         image=args.image,
-        out_path='./')
+        out_path="./output")
