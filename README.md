@@ -22,8 +22,15 @@ CUDA_VISIBLE_DEVICES=0 python tools/train.py ./configs/yunet_n.py --cfg-options 
 
 - run onnx to inference
 
-```sh
-python tools/compare_inference.py ./onnx/yunet_n_640_640_withRotate.onnx --mode 640,640 --image ./1.jpg --score_thresh 0.3 --nms_thresh 0.45
+```
+python tools/compare_inference.py [onnxmodel] --mode 640,640 --image [singal_image_dir] --score_thresh 0.2 --nms_thresh 0.45
+```
+
+- or if you want to take one testset into evaluation:
+    - Notice that this line will automatically set `${root}/data/widerface/WIDER_test/images/images/*.jpg` as all evaluated photos, and `${root}/data/widerface/labelv2/val/gt/output.mat` as evaluation `.mat` file.
+
+```
+python tools/compare_inference.py [onnxmodel] --eval --mode 640,640 --score_thresh 0.2 --nms_thresh 0.45
 ```
 
 ## Notice for pull request
