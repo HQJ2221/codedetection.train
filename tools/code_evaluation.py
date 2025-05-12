@@ -81,7 +81,7 @@ def image_eval(pred, gt, ignore, iou_thresh, mpp):
     pred_recall = np.zeros(_pred.shape[0])
     recall_list = np.zeros(_gt.shape[0])
     proposal_list = np.ones(_pred.shape[0])
-    print(_pred.shape, _gt.shape)
+    # print(_pred.shape, _gt.shape)
 
     # _pred[:, 2] = _pred[:, 2] + _pred[:, 0]
     # _pred[:, 3] = _pred[:, 3] + _pred[:, 1]
@@ -96,7 +96,7 @@ def image_eval(pred, gt, ignore, iou_thresh, mpp):
 
         gt_overlap = gt_overlap_list[h]
         max_overlap, max_idx = gt_overlap.max(), gt_overlap.argmax()
-        print(max_overlap)
+        # print(max_overlap)
 
         if max_overlap >= iou_thresh:
             if ignore[max_idx] == 0:
