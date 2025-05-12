@@ -33,6 +33,37 @@ python tools/compare_inference.py [onnxmodel] --mode 640,640 --image [singal_ima
 python tools/compare_inference.py [onnxmodel] --eval --mode 640,640 --score_thresh 0.2 --nms_thresh 0.45
 ```
 
+
+
+
+### WeChat QBar Model Evaluation Guide
+
+This document describes how to evaluate the WeChat QBar detection model and clarifies the default threshold parameters used during evaluation.
+
+#### Evaluation Command
+
+From the project root directory, run the following command to evaluate the QBar model:
+
+```bash
+python ./tools/qbar_compare.py --eval
+```
+
+#### Default Thresholds
+
+The score threshold and NMS IoU threshold are hardcoded in the following file:
+
+- File: `qbar_model.py`
+- Lines: Around 220–230, inside the `get_bboxes()` method
+
+```python
+results = multiclass_nms(
+    bbox,
+    score,
+    score_thr=0.2,  # Score threshold
+    nms_cfg=dict(type="nms", iou_threshold=0.45),  # NMS IoU threshold
+    max_num=100,
+)
+```
 ## Notice for pull request
 
 - Please use clear annotation when you update the code base:
