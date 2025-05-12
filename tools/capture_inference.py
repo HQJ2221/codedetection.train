@@ -5,6 +5,13 @@ from compare_inference import YUNET
 import argparse
 import os
 
+class_map = {
+    0: 'ArUco',
+    1: 'Bar',
+    2: 'Kuihua',
+    3: 'QR',
+}
+
 class QRCodeDetector:
     def __init__(self, model_path):
         self.detector = YUNET(model_file=model_path, nms_thresh=0.45)
@@ -28,7 +35,7 @@ class QRCodeDetector:
             # 绘制边界框
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
             # 显示置信度
-            label = f"QR: {score:.2f}"
+            label = f"{class_map[cls_id]}: {score:.2f}"
             cv2.putText(frame, label, (x1, y1-10), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 200, 200), 2)
         return frame
