@@ -13,7 +13,7 @@ class_map = {
 }
 
 class QRCodeDetector:
-    def __init__(self, model_path):
+    def __init__(self, model_path, fps):
         self.detector = YUNET(model_file=model_path, nms_thresh=0.45)
         # self.cap = cv2.VideoCapture(0)
 
@@ -25,8 +25,10 @@ class QRCodeDetector:
                 break
         else:
             raise RuntimeError("无法找到可用摄像头")
-        self.frame_interval = 1/30  # 最大30FPS
+        self.frame_interval = 1 / fps
         self.last_time = time.time()
+        self.cap.set(3, 1920)
+        self.cap.set(4, 1080)
 
     def draw_realtime(self, frame, bboxes):
         for bbox in bboxes:
@@ -52,6 +54,8 @@ class QRCodeDetector:
             ret, frame = self.cap.read()
             if not ret:
                 break
+            frame = cv2.flip(frame, 1)  # 水平翻转
+            # frame = cv2.resize(frame, (640, 640))  # 调整大小
 
             # 执行检测
             bboxes, _ = self.detector.detect(
@@ -65,7 +69,7 @@ class QRCodeDetector:
                 frame = self.draw_realtime(frame, bboxes)
 
             # 显示画面
-            cv2.imshow("QR Code Detection", frame)
+            cv2.imshow("Code Detection", frame)
 
             # 退出条件
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -78,13 +82,18 @@ class QRCodeDetector:
 def parse_args():
     parser = argparse.ArgumentParser(description='inference by ONNX')
     parser.add_argument('model', help='onnx model file path')
+    parser.add_argument('--fps', type=int, default=60, help='FPS of the video')  # default: 60 fps
     args = parser.parse_args()
     return args
 
 
 if __name__ == "__main__":
     args = parse_args()
-    detector = QRCodeDetector(args.model)
+    if not os.path.exists(args.model):
+        raise FileNotFoundError(f"Model file {args.model} does not exist.")
+    if args.fps <= 0:
+        raise ValueError("FPS must be a positive integer.")
+    detector = QRCodeDetector(args.model, args.fps)
     detector.run()
 
 # Try to run: python tools/capture_inference.py onnx/yunet_n_640_640_4type.onnx

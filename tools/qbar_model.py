@@ -1,6 +1,7 @@
 import os
 import cv2
 import math
+import time
 import yaml
 import torch
 import torch.nn as nn
@@ -100,8 +101,9 @@ class QBar_MODEL(object):
         blob = cv2.dnn.blobFromImage(image)
         self.qbar_detector.setInput(blob)
         layer_names = ('cls_pred_stride_8', 'cls_pred_stride_16', 'cls_pred_stride_32', 'dis_pred_stride_8', 'dis_pred_stride_16', 'dis_pred_stride_32')
+        start = time.time()
         out = self.qbar_detector.forward(layer_names)
-        return out
+        return out, time.time()-start  # Only calc the inference time of the model
     
     def net_forward_qbar_sr(self,image):
         blob = cv2.dnn.blobFromImage(image)
@@ -269,13 +271,13 @@ class QBar_MODEL(object):
     def process_qbar_detect(self,image):
         blob_input = self.process_qbar_det(image)
 
-        outputs = self.net_forward_qbar_det(blob_input)
+        outputs, inf_time = self.net_forward_qbar_det(blob_input)
 
         outputs = [torch.from_numpy(output) for output in outputs]
 
         result_list = self.post_process_qbar_det(blob_input,image,outputs)
 
-        return result_list
+        return result_list, inf_time
     
     def process_qbar_sr(self,image):
         out_image = self.net_forward_qbar_sr(image[:,:,np.newaxis].astype(np.float32))

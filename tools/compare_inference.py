@@ -3,6 +3,7 @@ import os
 from itertools import product as product
 from math import ceil
 from time import time
+import re
 
 import cv2
 import numpy as np
@@ -312,7 +313,7 @@ class WIDERFace(data.Dataset):
 
     def __getitem__(self, index):
         img = cv2.imread(self.img_list[index])
-        event, name = self.img_list[index].split('/')[-2:]
+        event, name = re.split(r'\\|/', self.img_list[index])[-2:]
         return img, event, name
 
     def __len__(self):
@@ -361,8 +362,10 @@ class YUNET(Detector):
         blob = np.transpose(img, [2, 0, 1]).astype(np.float32)[np.newaxis, ...].copy()
         # print(f"[DEBUG] Input blob shape: {blob.shape}")
 
-        # 推理
+        # 推理，记录模型推理时间
+        start = time()
         nets_out = self.session.run(None, {self.session.get_inputs()[0].name: blob})
+        end = time()
         # for i, out in enumerate(nets_out):
             # print(f"[DEBUG] nets_out[{i}]: shape = {out.shape}")
 
@@ -434,7 +437,7 @@ class YUNET(Detector):
         bboxes = np.hstack((bboxes, scores[:, None], labels))
 
         # print(f"[INFO] Final detections: {len(scores)} faces")
-        return bboxes, kpss
+        return bboxes, kpss, end-start  # 返回推理时间
 
 
     def detect(self, img, score_thresh=0.5, mode='ORIGIN'):
@@ -443,7 +446,7 @@ class YUNET(Detector):
         self.time_engine.toc('preprocess')
 
         # 正确接收两个返回值
-        bboxes, kpss = self.forward(det_img, score_thresh)
+        bboxes, kpss, inf_time = self.forward(det_img, score_thresh)
 
         self.time_engine.tic('postprocess')
 
@@ -460,7 +463,7 @@ class YUNET(Detector):
         kpss = kpss[keep, :]
 
         self.time_engine.toc('postprocess')
-        return bboxes, kpss
+        return bboxes, kpss, inf_time # 返回推理时间
 
 
 
@@ -801,10 +804,14 @@ def onnx_eval(detector,
         widerface_root = './data/widerface/'
         testloader = WIDERFace(split='test', root=widerface_root)
         results = {}
+        # 计算模型内推理时间
+        time_in_model = 0
+
         for idx in tqdm(range(len(testloader))):
             img, event_name, img_name = testloader[idx]
-            xywhs, kpss = detector.detect(
+            xywhs, kpss, inf_time = detector.detect(
                 img, score_thresh=score_thresh, mode=mode)
+            time_in_model += inf_time  # 计算模型内推理时间
             # w = xywhs[:, 2] - xywhs[:, 0]
             # h = xywhs[:, 3] - xywhs[:, 1]
             # xywhs[:, 2] = w
@@ -816,15 +823,19 @@ def onnx_eval(detector,
         run_epochs = 1
         # run_epochs = detector.time_engine.container.get('forward_run').epochs
         # print(f'Eval in {run_epochs}:')
-        for k, v in detector.time_engine.container.items():
-            print(f'{k} : {v.total_second() / run_epochs}')
-        print(f'Total: {detector.time_engine.total_second() / run_epochs}')
-        print(f'FPS: {run_epochs / detector.time_engine.total_second()}')
+        # # 暂时不显示预热和后处理时间
+        # for k, v in detector.time_engine.container.items():
+        #     print(f'{k} : {v.total_second() / run_epochs}')
+        # print(f'Total: {detector.time_engine.total_second() / run_epochs}')
+        time_in_model_per_img = time_in_model / len(testloader)
 
         ap = wider_evaluation(
             pred=results,
             gt_path=os.path.join(widerface_root, 'labelv2', 'val', 'gt'),)
-        print('AP:', ap)
+        
+        print(f'\033[34mAvg time for each img in model: {time_in_model_per_img:.6f} sec')
+        print(f'FPS: {1 / time_in_model_per_img:.6f}')
+        print(f'AP: {ap}\033[0m')
 
 
     else:

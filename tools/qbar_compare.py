@@ -1,5 +1,6 @@
 import argparse
 import os
+import re
 from time import time
 from tqdm import tqdm
 import cv2
@@ -48,7 +49,7 @@ class WIDERFace:
 
     def __getitem__(self, index):
         img = cv2.imread(self.img_list[index])
-        event, name = self.img_list[index].split('/')[-2:]
+        event, name = re.split(r'\\|/', self.img_list[index])[-2:]
         return img, event, name
 
     def __len__(self):
@@ -60,10 +61,12 @@ def onnx_eval(qbar_model, eval=False, score_thresh=0.3, image=None, out_path=Non
         widerface_root = './data/widerface/'
         testloader = WIDERFace(split='test', root=widerface_root)
         results = {}
+        time_in_model = 0
 
         for idx in tqdm(range(len(testloader))):
             img, event_name, img_name = testloader[idx]
-            result_list = qbar_model.process_qbar_detect(img)
+            result_list, inf_time = qbar_model.process_qbar_detect(img)  # calc runtime of model only
+            time_in_model += inf_time  # add all time in model
 
             bboxes = []
             for r in result_list:
@@ -76,12 +79,16 @@ def onnx_eval(qbar_model, eval=False, score_thresh=0.3, image=None, out_path=Non
                 results[event_name] = {}
             results[event_name][img_name.rstrip('.jpg')] = bboxes
 
-        print(f'Total Images: {len(testloader)}')
+        # print(f'Total Images: {len(testloader)}')
         ap = wider_evaluation(
             pred=results,
             gt_path=os.path.join(widerface_root, 'labelv2', 'val', 'gt'),
         )
-        print('AP:', ap)
+
+        time_in_model_per_img = time_in_model / len(testloader)
+        print(f'\033[32mAvg time for each img in model: {time_in_model_per_img:.6f} sec')
+        print(f'FPS: {1 / time_in_model_per_img:.6f}')
+        print(f'AP: {ap}\033[0m')
 
     else:
         assert image is not None
