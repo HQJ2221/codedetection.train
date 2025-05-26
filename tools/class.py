@@ -793,7 +793,14 @@ class RETINAFACE(Detector):
 def onnx_eval(detector, prefix, eval=False, score_thresh=0.3, mode='640,640', image=None, out_path=None, image_folder=None, gt_file=None):
 
     if args.image_folder is not None:
-        evaluate_folder(detector, args.image_folder, args.gt_file)
+        evaluate_folder(
+            detector,
+            image_folder=args.image_folder,
+            gt_file=args.gt_file,
+            score_thresh=args.score_thresh,
+            mode=args.mode
+        )
+
         return
 
     if eval:
@@ -857,8 +864,11 @@ def onnx_eval(detector, prefix, eval=False, score_thresh=0.3, mode='640,640', im
             out_path=os.path.join(
                 out_path, prefix + '_' + mode + '_' + os.path.basename(image)))
 
-def evaluate_folder(detector, image_folder, gt_file):
-    # 读取gt文件
+def evaluate_folder(detector, image_folder, gt_file, score_thresh, mode):
+    import os
+    import cv2
+
+    # 读取 Ground Truth 文件
     gt_labels = {}
     with open(gt_file, 'r') as f:
         lines = f.readlines()
@@ -872,54 +882,74 @@ def evaluate_folder(detector, image_folder, gt_file):
 
     correct = 0
     total = 0
-    no_detection = 0
-    wrong_list = []  # 错分图片列表
+    missed = 0
+    wrong = 0
+    wrong_list = []
+    skipped = 0
 
     all_files = os.listdir(image_folder)
-    all_files = [f for f in all_files if f.endswith('.jpg')]
+    all_files = [f for f in all_files if f.lower().endswith('.jpg')]
 
     for img_name in all_files:
         img_path = os.path.join(image_folder, img_name)
         img = cv2.imread(img_path)
         if img is None:
-            print(f"[WARNING] Failed to read {img_path}")
+            print(f"[WARNING] 无法读取图片: {img_path}")
             continue
 
-        img_resized, det_scale = resize_img(img, mode="640,640")
+        if img_name not in gt_labels:
+            print(f"[SKIP] Ground truth 中没有该图片信息: {img_name}")
+            total += 1
+            skipped += 1
+            continue
 
-        bboxes, kpss = detector.detect(img_resized, score_thresh=0.5, mode='640,640')
+        img_resized, _ = resize_img(img, mode=mode)
+        bboxes, kpss = detector.detect(img_resized, score_thresh=score_thresh, mode=mode)
 
+        true_cls = gt_labels[img_name]
 
         if len(bboxes) == 0:
-            pred_cls = -1
-            no_detection += 1
+            pred_info = ['-1']
+            if true_cls == -1:
+                correct += 1
+            else:
+                missed += 1
+                wrong_list.append(f"{img_name} -1 {true_cls}")
         else:
-            pred_cls = int(bboxes[0, 5])
+            pred_info = [str(int(bboxes[i, 5])) for i in range(len(bboxes))]
+            pred_classes = set(int(cls) for cls in pred_info)
 
-        true_cls = gt_labels.get(img_name, -1)
-
-        if true_cls == pred_cls:
-            correct += 1
-        else:
-            wrong_list.append(f"{img_name} {pred_cls} {true_cls}")
+            # 所有预测类别都必须等于 true_cls，才算正确
+            if pred_classes == {true_cls}:
+                correct += 1
+            else:
+                wrong += 1
+                wrong_list.append(f"{img_name} {'/'.join(pred_info)} {true_cls}")
 
         total += 1
 
-        print(f"[INFO] {img_name}: pred={pred_cls} / gt={true_cls} {'✓' if pred_cls == true_cls else '✗'}")
+    accuracy = correct / (total - skipped) if (total - skipped) > 0 else 0
 
-    print(f"\nTotal images: {total}")
-    print(f"Correct predictions: {correct}")
-    print(f"No detections: {no_detection}")
-    print(f"Accuracy: {correct / total:.4f}")
+    print(f"\n总图像数: {total}")
+    print(f"跳过的图像数（无GT信息）: {skipped}")
+    print(f"有效图像数: {total - skipped}")
+    print(f"正确数: {correct}")
+    print(f"未检测到数: {missed}")
+    print(f"错误分类数: {wrong}")
+    print(f"总正确率: {accuracy:.2%}")
 
-    # 保存错分图片
-    if len(wrong_list) > 0:
+    if wrong_list:
         with open('wrong_predictions.txt', 'w') as f:
             for line in wrong_list:
                 f.write(line + '\n')
-        print(f"[INFO] Saved {len(wrong_list)} wrong predictions to wrong_predictions.txt")
+        print(f"[INFO] 已保存 {len(wrong_list)} 个错误图像到 wrong_predictions.txt")
     else:
-        print("[INFO] No wrong predictions!")
+        print("[INFO] 没有错误图像")
+
+
+
+
+
 
 
 
