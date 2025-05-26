@@ -1,0 +1,10 @@
+onnx_path: "qbar_det.onnx"
+min_input_size: 448
+max_input_size: 640
+regmax: 10
+cls_name:
+  - "CLASS_QRCODE"
+  - "CLASS_WXCODE"
+  - "CLASS_PDF417"
+  - "CLASS_ONED"
+  - "CLASS_DATAMATRIX"

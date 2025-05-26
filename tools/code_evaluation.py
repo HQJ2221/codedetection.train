@@ -81,8 +81,8 @@ def image_eval(pred, gt, ignore, iou_thresh, mpp):
     pred_recall = np.zeros(_pred.shape[0])
     recall_list = np.zeros(_gt.shape[0])
     proposal_list = np.ones(_pred.shape[0])
-    print(_pred.shape, _gt.shape)
-
+    # print(_pred.shape, _gt.shape)
+    # 这里把坐标格式从 (x1, y1, w, h) 转换为 (x1, y1, x2, y2)，但是我们不需要
     # _pred[:, 2] = _pred[:, 2] + _pred[:, 0]
     # _pred[:, 3] = _pred[:, 3] + _pred[:, 1]
     # _gt[:, 2] = _gt[:, 2] + _gt[:, 0]
@@ -96,7 +96,7 @@ def image_eval(pred, gt, ignore, iou_thresh, mpp):
 
         gt_overlap = gt_overlap_list[h]
         max_overlap, max_idx = gt_overlap.max(), gt_overlap.argmax()
-        print(max_overlap)
+        # print(max_overlap)
 
         if max_overlap >= iou_thresh:
             if ignore[max_idx] == 0:
@@ -173,8 +173,6 @@ def wider_evaluation(pred, gt_path, iou_thresh=0.5):
 
     # from multiprocessing.pool import ThreadPool
     mpp = Pool(8)
-    print('')
-    ta = datetime.datetime.now()
     iou_th = iou_thresh
     count_code = 0
     pr_curve = np.zeros((thresh_num, 2)).astype('float')
@@ -222,8 +220,5 @@ def wider_evaluation(pred, gt_path, iou_thresh=0.5):
         #       rthresh)
 
     ap = voc_ap(recall, propose)
-    tb = datetime.datetime.now()
-    print('Code test cost %.4f seconds, ap: %.5f' %
-            ((tb - ta).total_seconds(), ap))
 
     return ap
