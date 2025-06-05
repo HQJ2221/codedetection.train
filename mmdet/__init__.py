@@ -2,6 +2,7 @@
 import mmcv
 
 from .version import __version__, short_version
+from .core import *
 
 
 def digit_version(version_str):
