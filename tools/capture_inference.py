@@ -10,6 +10,8 @@ class_map = {
     1: 'Bar',
     2: 'Kuihua',
     3: 'QR',
+    4: 'pdf417',
+    5: 'datamatrix',
 }
 
 class QRCodeDetector:
@@ -58,7 +60,7 @@ class QRCodeDetector:
             # frame = cv2.resize(frame, (640, 640))  # 调整大小
 
             # 执行检测
-            bboxes, _ = self.detector.detect(
+            bboxes, _, _ = self.detector.detect(
                 frame, 
                 score_thresh=0.2, 
                 mode='640,640'
@@ -82,7 +84,7 @@ class QRCodeDetector:
 def parse_args():
     parser = argparse.ArgumentParser(description='inference by ONNX')
     parser.add_argument('model', help='onnx model file path')
-    parser.add_argument('--fps', type=int, default=60, help='FPS of the video')  # default: 60 fps
+    parser.add_argument('--fps', type=int, default=120, help='FPS of the video')  # default: 120 fps
     args = parser.parse_args()
     return args
 

@@ -184,7 +184,7 @@ def draw(img, bboxes, kpss, out_path, with_kps=True):
         #         kp = kp.astype(np.int32)
         #         cv2.circle(img, tuple(kp), 1, (255, 0, 0), 2)
 
-    # print('output:', out_path)
+    print('output:', out_path)
     cv2.imwrite(out_path, img)
 
 
@@ -844,13 +844,13 @@ def onnx_eval(detector,
         print(f'The origin shape is: {img.shape[:-1]}')
         warm_epochs = 1
         for _ in range(warm_epochs):
-            bboxes, kpss = detector.detect(
+            bboxes, kpss, _ = detector.detect(
                 img, score_thresh=score_thresh, mode=mode)
         detector.time_engine.reset()
         run_epochs = 1
         t0 = time()
         for _ in range(run_epochs):
-            bboxes, kpss = detector.detect(
+            bboxes, kpss, _ = detector.detect(
                 img, score_thresh=score_thresh, mode=mode)
         t1 = time() - t0
         print(f'Warm up in {warm_epochs} epochs, test in {run_epochs} epochs:')
@@ -862,12 +862,13 @@ def onnx_eval(detector,
         print(f'FPS: {run_epochs / detector.time_engine.total_second()} \
                 ({run_epochs / t1})')
 
+        out_path = os.path.join(out_path, prefix + '_' + os.path.basename(image))
+
         draw(
             img,
             bboxes,
             kpss,
-            out_path=os.path.join(
-                out_path, prefix + '_' + mode + '_' + os.path.basename(image)))
+            out_path=out_path)
 
 
 def parse_args():
@@ -927,4 +928,4 @@ if __name__ == '__main__':
         score_thresh=args.score_thresh,
         mode=args.mode,
         image=args.image,
-        out_path="./output")
+        out_path="output")
