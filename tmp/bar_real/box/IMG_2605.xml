@@ -1,0 +1,26 @@
+<annotation>
+	<folder>jpg_output</folder>
+	<filename>IMG_2605.jpg</filename>
+	<path>F:\qrcode-data\bar_real\jpg_output\IMG_2605.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>3024</width>
+		<height>4032</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bar</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>453</xmin>
+			<ymin>1179</ymin>
+			<xmax>1510</xmax>
+			<ymax>2548</ymax>
+		</bndbox>
+	</object>
+</annotation>
