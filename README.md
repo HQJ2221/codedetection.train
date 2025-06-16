@@ -1,14 +1,24 @@
 # Code Detection(draft ver.)
 
 - This repo is just for test and share in my 2025 Spring research.
-- It is uncompleted, so it's unsafe for use.
-- We are still working to improve it
+- It is still being improved, remaining unsafe for use.
 
 ## About
 
-- Codes 99.99% stem from repo [libfacedetection.train](https://github.com/ShiqiYu/libfacedetection.train)
-- My team just modify a little bit to make it compact for qrcode detection and support multi-class training.
-- Thanks for all previous work by all geniuses!
+> Codes 99.99% stem from repo [libfacedetection.train](https://github.com/ShiqiYu/libfacedetection.train)
+> My team just modify a little bit to make it compact for qrcode detection and support multi-class training.
+> Thanks for all previous work by all geniuses!
+
+- Now we have made the fine-tuned YuNet support 4 types of codes: `QR Code`, `1D Barcode`, `ArUco` and `Kuihua Code`(known as mini program code in WeChat)
+- Upcoming support: `pdf417`, `datamatrix`
+
+**Performance**
+
+- The fine-tuned YuNet has passed the same test with the model that WeChat uses(in `OpenCV`), and we compare mainly in AP score and FPS aspect.
+- Results show that the **FPS** of the fine-tuned YuNet is almost **3 times** as WeChat model
+- AP score are similar:
+    - in QR Code test, AP score can exceed WeChat model by about 2%.
+    - but in 1D Barcode test, AP score is not good enough.
 
 ## Notes about running
 
@@ -64,10 +74,5 @@ results = multiclass_nms(
     max_num=100,
 )
 ```
-## Notice for pull request
 
-- Please use clear annotation when you update the code base:
-    - update for documents(include README): `Docs: [content]`
-    - update model(configs, mmdet or the structure of model): `Feat: [content]`
-    - add new tools(scripts) or modify: `Test: [content]`
-- You should specify details of what you do with the codes. Thanks for contribution!!
+
