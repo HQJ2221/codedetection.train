@@ -6,7 +6,9 @@
 ## About
 
 > Codes 99.99% stem from repo [libfacedetection.train](https://github.com/ShiqiYu/libfacedetection.train)
+> 
 > My team just modify a little bit to make it compact for qrcode detection and support multi-class training.
+> 
 > Thanks for all previous work by all geniuses!
 
 - Now we have made the fine-tuned YuNet support 4 types of codes: `QR Code`, `1D Barcode`, `ArUco` and `Kuihua Code`(known as mini program code in WeChat)
