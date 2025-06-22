@@ -10,6 +10,8 @@
 > My team just modify a little bit to make it compact for qrcode detection and support multi-class training.
 > 
 > Thanks for all previous work by all geniuses!
+>
+> Please check part of the detail [here](https://github.com/HQJ2221/codedetection.train/blob/main/report.md).
 
 - Now we have made the fine-tuned YuNet support 4 types of codes: `QR Code`, `1D Barcode`, `ArUco` and `Kuihua Code`(known as mini program code in WeChat)
 - Upcoming support: `pdf417`, `datamatrix`
@@ -22,10 +24,10 @@
     - in QR Code test, AP score can exceed WeChat model by about 2%.
     - but in 1D Barcode test, AP score is not good enough.
 
-## Notes about running
+## How to train and inference
 
 - run this to train the model
-- Notice: You should config your env first!
+- Notice: You should config your env first(view [here](https://github.com/ShiqiYu/libfacedetection.train))
 
 ```sh
 CUDA_VISIBLE_DEVICES=0 python tools/train.py ./configs/yunet_n.py --cfg-options runner.max_epochs=1
