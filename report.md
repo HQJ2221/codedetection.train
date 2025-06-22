@@ -15,5 +15,10 @@
 >
 > We only selected part of them to apply in our training and testing.
 
-## 
+## Source
+
+- We find most of our image data from:
+  - [Roboflow](https://roboflow.com/)
+  - [Kaggle](https://www.kaggle.com/)
+  - [Zenodo](https://zenodo.org/)
 
