@@ -130,3 +130,6 @@ work_dirs/
 
 /data/widerface/*
 !/data/widerface/labelv2/
+
+# customize / one-use / temp script
+/tmp_script/
