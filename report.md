@@ -7,7 +7,7 @@
 |Code Type|Set Size(train/val + test)|Reference|
 |:-:|:-:|:-|
 |**ArUco**(cls: 0)|2997 + 0|:one:[FlyingArUco v2](https://zenodo.org/records/14053985)|
-|**1D Barcode**(cls: 1)|5614 + 428|:one:[Brcode-qrcode-kuihuama Repo](https://github.com/simplew2011/barcode_qrcode_kuihuama)<br/>:two:WeChat Proprietary Dataset(private)|
+|**1D Barcode**(cls: 1)|5614 + 428|:one:[Brcode-qrcode-kuihuama Repo](https://github.com/simplew2011/barcode_qrcode_kuihuama)<br/>:two:WeChat Proprietary Dataset(private)<br/>:three:[Quick Browser and Smart Inference(barcode_bb)](https://zenodo.org/records/13586402) 【[Download](https://zenodo.org/records/13586402/files/barcode_bb.zip?download=1)】|
 |**Kuihua Code**(cls: 2)|7194 + 203|same as barcode|
 |**QR Code**(cls: 3)|5792 + 1134|same as barcode|
 
@@ -34,12 +34,11 @@
 
 ```
 # [image_path] [width] [height] [cls]
-[src_X] [src_Y] [dst_X] [dst_Y] [kps1_X] [kps1_Y] [kps1_state] [kps2_X] [kps2_Y] [kps2_state] [kps3_X] [kps3_Y] [kps3_state]
+[src_X] [src_Y] [dst_X] [dst_Y]
 ```
 
-- since we deprecate key points, the last 9 data were set to -1
 - following modification should be done:
-  - [ ] delete `kps` data
+  - [x] delete `kps` data
   - [ ] make `cls` target-specified other than image-specified
 - we hope finally our dataset like this:
 
