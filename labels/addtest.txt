@@ -1,0 +1,858 @@
+# ./images/robot_flow_damagedimage019.jpg 640 640 3
+210.0 268.0 478.0 503.0
+# ./images/robot_flow_damagedimage020.jpg 640 640 3
+85.0 116.0 439.0 515.0
+# ./images/robot_flow_damagedimage021.jpg 640 640 3
+95.0 146.0 524.0 515.0
+# ./images/robot_flow_damagedimage022.jpg 640 640 3
+151.0 190.0 497.0 522.0
+# ./images/robot_flow_damagedimage025.jpg 640 640 3
+113.0 119.0 560.0 521.0
+# ./images/robot_flow_damagedimage027.jpg 640 640 3
+82.0 85.0 545.0 467.0
+# ./images/robot_flow_damagedimage028.jpg 640 640 3
+167.0 157.0 494.0 445.0
+# ./images/robot_flow_damagedimage030.jpg 640 640 3
+64.0 82.0 574.0 551.0
+# ./images/robot_flow_damagedimage031.jpg 640 640 3
+80.0 64.0 551.0 535.0
+# ./images/robot_flow_damagedimage033.jpg 640 640 3
+68.0 95.0 562.0 618.0
+# ./images/robot_flow_damagedimage034.jpg 640 640 3
+73.0 77.0 554.0 551.0
+# ./images/robot_flow_data-matrix-code-mail-parcel.jpg 640 640 3
+232.0 251.0 399.0 496.0
+# ./images/robot_flow_glareimage003.jpg 640 640 3
+132.0 142.0 384.0 438.0
+# ./images/robot_flow_glareimage006.jpg 640 640 3
+280.0 246.0 413.0 349.0
+# ./images/robot_flow_glareimage007.jpg 640 640 3
+51.0 101.0 245.0 311.0
+346.0 247.0 586.0 570.0
+# ./images/robot_flow_glareimage008.jpg 640 640 3
+144.0 228.0 449.0 443.0
+# ./images/robot_flow_glareimage009.jpg 640 640 3
+96.0 313.0 288.0 471.0
+370.0 182.0 496.0 342.0
+# ./images/robot_flow_glareimage012.jpg 640 640 3
+277.0 366.0 347.0 431.0
+# ./images/robot_flow_glareimage013.jpg 640 640 3
+290.0 192.0 423.0 304.0
+# ./images/robot_flow_glareimage015.jpg 640 640 3
+220.0 190.0 394.0 412.0
+# ./images/robot_flow_glareimage016.jpg 640 640 3
+189.0 246.0 412.0 422.0
+# ./images/robot_flow_glareimage017.jpg 640 640 3
+201.0 289.0 456.0 468.0
+# ./images/robot_flow_glareimage018.jpg 640 640 3
+357.0 249.0 505.0 459.0
+# ./images/robot_flow_glareimage019.jpg 640 640 3
+140.0 135.0 498.0 395.0
+# ./images/robot_flow_glareimage020.jpg 640 640 3
+246.0 162.0 439.0 452.0
+# ./images/robot_flow_glareimage021.jpg 640 640 3
+209.0 144.0 443.0 418.0
+# ./images/robot_flow_glareimage022.jpg 640 640 3
+133.0 177.0 402.0 435.0
+# ./images/robot_flow_glareimage023.jpg 640 640 3
+276.0 312.0 341.0 352.0
+# ./images/robot_flow_glareimage026.jpg 640 640 3
+291.0 181.0 468.0 437.0
+# ./images/robot_flow_glareimage027.jpg 640 640 3
+135.0 179.0 284.0 390.0
+# ./images/robot_flow_glareimage028.jpg 640 640 3
+137.0 247.0 488.0 505.0
+# ./images/robot_flow_glareimage029.jpg 640 640 3
+203.0 190.0 391.0 478.0
+# ./images/robot_flow_glareimage030.jpg 640 640 3
+193.0 222.0 432.0 499.0
+# ./images/robot_flow_glareimage031.jpg 640 640 3
+133.0 177.0 402.0 435.0
+# ./images/robot_flow_glareimage032.jpg 640 640 3
+300.0 288.0 363.0 329.0
+# ./images/robot_flow_glareimage035.jpg 640 640 3
+282.0 298.0 379.0 369.0
+# ./images/robot_flow_glareimage036.jpg 640 640 3
+107.0 136.0 494.0 541.0
+# ./images/robot_flow_glareimage038.jpg 640 640 3
+130.0 100.0 511.0 528.0
+# ./images/robot_flow_glareimage039.jpg 640 640 3
+129.0 143.0 520.0 529.0
+# ./images/robot_flow_glareimage040.jpg 640 640 3
+130.0 117.0 510.0 516.0
+# ./images/robot_flow_glareimage041.jpg 640 640 3
+121.0 118.0 522.0 493.0
+# ./images/robot_flow_glareimage042.jpg 640 640 3
+121.0 101.0 481.0 515.0
+# ./images/robot_flow_glareimage043.jpg 640 640 3
+70.0 111.0 500.0 588.0
+# ./images/robot_flow_glareimage044.jpg 640 640 3
+88.0 93.0 550.0 552.0
+# ./images/robot_flow_glareimage045.jpg 640 640 3
+108.0 129.0 534.0 506.0
+# ./images/robot_flow_glareimage046.jpg 640 640 3
+109.0 130.0 494.0 513.0
+# ./images/robot_flow_glareimage047.jpg 640 640 3
+127.0 116.0 510.0 514.0
+# ./images/robot_flow_glareimage048.jpg 640 640 3
+118.0 145.0 521.0 521.0
+# ./images/robot_flow_glareimage049.jpg 640 640 3
+84.0 131.0 572.0 576.0
+# ./images/robot_flow_glareimage050.jpg 640 640 3
+85.0 92.0 554.0 555.0
+# ./images/robot_flow_high_versionimage000.jpg 640 640 3
+29.0 37.0 617.0 593.0
+# ./images/robot_flow_high_versionimage001.jpg 640 640 3
+34.0 21.0 605.0 577.0
+# ./images/robot_flow_high_versionimage002.jpg 640 640 3
+40.0 43.0 592.0 550.0
+# ./images/robot_flow_high_versionimage003.jpg 640 640 3
+96.0 54.0 554.0 567.0
+# ./images/robot_flow_high_versionimage004.jpg 640 640 3
+43.0 53.0 621.0 596.0
+# ./images/robot_flow_high_versionimage005.jpg 640 640 3
+8.0 13.0 608.0 622.0
+# ./images/robot_flow_high_versionimage006.jpg 640 640 3
+41.0 33.0 581.0 564.0
+# ./images/robot_flow_high_versionimage007.jpg 640 640 3
+44.0 34.0 605.0 630.0
+# ./images/robot_flow_high_versionimage008.jpg 640 640 3
+23.0 35.0 589.0 621.0
+# ./images/robot_flow_high_versionimage009.jpg 640 640 3
+40.0 31.0 597.0 625.0
+# ./images/robot_flow_high_versionimage010.jpg 640 640 3
+46.0 36.0 595.0 577.0
+# ./images/robot_flow_high_versionimage011.jpg 640 640 3
+59.0 48.0 575.0 578.0
+# ./images/robot_flow_high_versionimage012.jpg 640 640 3
+28.0 54.0 592.0 620.0
+# ./images/robot_flow_high_versionimage013.jpg 640 640 3
+59.0 67.0 555.0 553.0
+# ./images/robot_flow_high_versionimage014.jpg 640 640 3
+46.0 58.0 578.0 557.0
+# ./images/robot_flow_high_versionimage019.jpg 640 640 3
+53.0 70.0 596.0 547.0
+# ./images/robot_flow_high_versionimage020.jpg 640 640 3
+60.0 56.0 589.0 592.0
+# ./images/robot_flow_high_versionimage021.jpg 640 640 3
+35.0 56.0 604.0 607.0
+# ./images/robot_flow_high_versionimage026.jpg 640 640 3
+72.0 51.0 583.0 565.0
+# ./images/robot_flow_high_versionimage027.jpg 640 640 3
+116.0 111.0 546.0 573.0
+# ./images/robot_flow_high_versionimage031.jpg 640 640 3
+102.0 102.0 534.0 537.0
+# ./images/robot_flow_high_versionimage032.jpg 640 640 3
+24.0 39.0 604.0 606.0
+# ./images/robot_flow_monitorimage001.jpg 640 640 3
+71.0 182.0 580.0 593.0
+# ./images/robot_flow_monitorimage002.jpg 640 640 3
+72.0 182.0 579.0 594.0
+# ./images/robot_flow_monitorimage003.jpg 640 640 3
+58.0 62.0 596.0 579.0
+# ./images/robot_flow_monitorimage004.jpg 640 640 3
+24.0 44.0 583.0 585.0
+# ./images/robot_flow_monitorimage005.jpg 640 640 3
+46.0 70.0 573.0 597.0
+# ./images/robot_flow_monitorimage006.jpg 640 640 3
+48.0 22.0 587.0 598.0
+# ./images/robot_flow_monitorimage007.jpg 640 640 3
+34.0 22.0 604.0 607.0
+# ./images/robot_flow_monitorimage008.jpg 640 640 3
+35.0 40.0 587.0 592.0
+# ./images/robot_flow_monitorimage009.jpg 640 640 3
+12.0 34.0 628.0 627.0
+# ./images/robot_flow_monitorimage010.jpg 640 640 3
+50.0 43.0 594.0 621.0
+# ./images/robot_flow_monitorimage011.jpg 640 640 3
+68.0 57.0 565.0 573.0
+# ./images/robot_flow_monitorimage012.jpg 640 640 3
+74.0 86.0 566.0 558.0
+# ./images/robot_flow_monitorimage013.jpg 640 640 3
+50.0 77.0 586.0 576.0
+# ./images/robot_flow_monitorimage014.jpg 640 640 3
+76.0 60.0 575.0 564.0
+# ./images/robot_flow_monitorimage015.jpg 640 640 3
+86.0 89.0 523.0 551.0
+# ./images/robot_flow_monitorimage016.jpg 640 640 3
+65.0 63.0 569.0 578.0
+# ./images/robot_flow_monitorimage017.jpg 640 640 3
+74.0 68.0 558.0 579.0
+# ./images/robot_flow_nominalimage002.jpg 640 640 3
+206.0 98.0 340.0 316.0
+312.0 247.0 443.0 445.0
+# ./images/robot_flow_nominalimage003.jpg 640 640 3
+227.0 304.0 420.0 605.0
+90.0 122.0 266.0 374.0
+# ./images/robot_flow_nominalimage005.jpg 640 640 3
+244.0 101.0 511.0 545.0
+# ./images/robot_flow_nominalimage006.jpg 640 640 3
+318.0 154.0 584.0 594.0
+# ./images/robot_flow_nominalimage008.jpg 640 640 3
+183.0 257.0 525.0 447.0
+# ./images/robot_flow_nominalimage009.jpg 640 640 3
+138.0 181.0 450.0 387.0
+# ./images/robot_flow_nominalimage010.jpg 640 640 3
+276.0 133.0 525.0 455.0
+# ./images/robot_flow_nominalimage011.jpg 640 640 3
+97.0 212.0 259.0 450.0
+# ./images/robot_flow_nominalimage014.jpg 640 640 3
+314.0 208.0 466.0 395.0
+# ./images/robot_flow_nominalimage016.jpg 640 640 3
+205.0 110.0 395.0 283.0
+# ./images/robot_flow_nominalimage017.jpg 640 640 3
+71.0 211.0 288.0 394.0
+# ./images/robot_flow_nominalimage023.jpg 640 640 3
+87.0 260.0 398.0 453.0
+# ./images/robot_flow_nominalimage024.jpg 640 640 3
+397.0 175.0 492.0 239.0
+# ./images/robot_flow_nominalimage025.jpg 640 640 3
+127.0 251.0 250.0 447.0
+# ./images/robot_flow_nominalimage026.jpg 640 640 3
+357.0 196.0 468.0 282.0
+183.0 199.0 290.0 281.0
+# ./images/robot_flow_nominalimage027.jpg 640 640 3
+172.0 357.0 283.0 445.0
+352.0 358.0 457.0 441.0
+# ./images/robot_flow_nominalimage028.jpg 640 640 3
+83.0 393.0 251.0 518.0
+370.0 392.0 535.0 516.0
+# ./images/robot_flow_nominalimage029.jpg 640 640 3
+393.0 392.0 517.0 557.0
+392.0 104.0 513.0 269.0
+# ./images/robot_flow_nominalimage030.jpg 640 640 3
+378.0 184.0 500.0 385.0
+# ./images/robot_flow_nominalimage031.jpg 640 640 3
+83.0 393.0 251.0 518.0
+370.0 392.0 535.0 516.0
+# ./images/robot_flow_nominalimage032.jpg 640 640 3
+250.0 267.0 360.0 402.0
+# ./images/robot_flow_nominalimage033.jpg 640 640 3
+261.0 283.0 345.0 351.0
+# ./images/robot_flow_nominalimage034.jpg 640 640 3
+322.0 255.0 392.0 344.0
+# ./images/robot_flow_nominalimage035.jpg 640 640 3
+228.0 216.0 357.0 399.0
+# ./images/robot_flow_nominalimage036.jpg 640 640 3
+268.0 281.0 404.0 389.0
+# ./images/robot_flow_nominalimage037.jpg 640 640 3
+261.0 283.0 346.0 351.0
+# ./images/robot_flow_nominalimage038.jpg 640 640 3
+255.0 248.0 344.0 318.0
+# ./images/robot_flow_nominalimage039.jpg 640 640 3
+217.0 285.0 401.0 413.0
+# ./images/robot_flow_nominalimage040.jpg 640 640 3
+250.0 165.0 341.0 321.0
+379.0 145.0 478.0 307.0
+# ./images/robot_flow_nominalimage041.jpg 640 640 3
+362.0 293.0 464.0 428.0
+# ./images/robot_flow_nominalimage042.jpg 640 640 3
+53.0 69.0 521.0 506.0
+# ./images/robot_flow_nominalimage045.jpg 640 640 3
+88.0 63.0 281.0 295.0
+397.0 344.0 577.0 547.0
+# ./images/robot_flow_nominalimage046.jpg 640 640 3
+430.0 257.0 515.0 333.0
+210.0 265.0 298.0 342.0
+# ./images/robot_flow_nominalimage048.jpg 640 640 3
+226.0 293.0 400.0 469.0
+# ./images/robot_flow_nominalimage049.jpg 640 640 3
+230.0 157.0 465.0 416.0
+# ./images/robot_flow_nominalimage050.jpg 640 640 3
+138.0 138.0 513.0 637.0
+# ./images/robot_flow_nominalimage051.jpg 640 640 3
+135.0 199.0 359.0 440.0
+# ./images/robot_flow_nominalimage052.jpg 640 640 3
+186.0 116.0 427.0 355.0
+# ./images/robot_flow_nominalimage053.jpg 640 640 3
+307.0 340.0 347.0 389.0
+# ./images/robot_flow_nominalimage054.jpg 640 640 3
+144.0 29.0 531.0 458.0
+# ./images/robot_flow_nominalimage055.jpg 640 640 3
+158.0 105.0 550.0 474.0
+# ./images/robot_flow_nominalimage056.jpg 640 640 3
+73.0 57.0 576.0 546.0
+# ./images/robot_flow_nominalimage058.jpg 640 640 3
+98.0 67.0 541.0 467.0
+# ./images/robot_flow_nominalimage060.jpg 640 640 3
+158.0 104.0 549.0 475.0
+# ./images/robot_flow_nominalimage062.jpg 640 640 3
+196.0 145.0 547.0 431.0
+# ./images/robot_flow_nominalimage063.jpg 640 640 3
+166.0 170.0 507.0 470.0
+# ./images/robot_flow_nominalimage064.jpg 640 640 3
+105.0 125.0 488.0 525.0
+# ./images/robot_flow_nominalimage065.jpg 640 640 3
+234.0 141.0 513.0 397.0
+# ./images/robot_flow_noncompliantimage001.jpg 640 640 3
+95.0 111.0 304.0 397.0
+395.0 178.0 591.0 463.0
+# ./images/robot_flow_noncompliantimage002.jpg 640 640 3
+59.0 108.0 359.0 317.0
+244.0 317.0 572.0 567.0
+# ./images/robot_flow_noncompliantimage004.jpg 640 640 3
+360.0 43.0 619.0 371.0
+26.0 256.0 316.0 587.0
+# ./images/robot_flow_noncompliantimage005.jpg 640 640 3
+175.0 122.0 524.0 531.0
+# ./images/robot_flow_noncompliantimage006.jpg 640 640 3
+131.0 110.0 546.0 496.0
+# ./images/robot_flow_noncompliantimage007.jpg 640 640 3
+139.0 137.0 493.0 533.0
+# ./images/robot_flow_noncompliantimage008.jpg 640 640 3
+92.0 135.0 553.0 592.0
+# ./images/robot_flow_noncompliantimage009.jpg 640 640 3
+41.0 17.0 372.0 284.0
+250.0 314.0 602.0 621.0
+# ./images/robot_flow_noncompliantimage010.jpg 640 640 3
+360.0 42.0 620.0 371.0
+27.0 262.0 316.0 589.0
+# ./images/robot_flow_noncompliantimage013.jpg 640 640 3
+320.0 57.0 529.0 358.0
+79.0 255.0 310.0 569.0
+# ./images/robot_flow_noncompliantimage014.jpg 640 640 3
+337.0 238.0 548.0 532.0
+51.0 178.0 245.0 461.0
+# ./images/robot_flow_noncompliantimage015.jpg 640 640 3
+134.0 117.0 549.0 496.0
+# ./images/robot_flow_noncompliantimage016.jpg 640 640 3
+137.0 150.0 528.0 501.0
+# ./images/robot_flow_pathologicalimage001_png.jpg 640 640 3
+67.0 72.0 570.0 565.0
+# ./images/robot_flow_pathologicalimage002_png.jpg 640 640 3
+68.0 72.0 568.0 570.0
+# ./images/robot_flow_pathologicalimage003_png.jpg 640 640 3
+68.0 75.0 570.0 570.0
+# ./images/robot_flow_pathologicalimage004_png.jpg 640 640 3
+74.0 70.0 573.0 571.0
+# ./images/robot_flow_pathologicalimage006_png.jpg 640 640 3
+68.0 71.0 570.0 570.0
+# ./images/robot_flow_pathologicalimage008_png.jpg 640 640 3
+69.0 71.0 569.0 571.0
+# ./images/robot_flow_pathologicalimage009_png.jpg 640 640 3
+67.0 73.0 571.0 577.0
+# ./images/robot_flow_pathologicalimage011_png.jpg 640 640 3
+67.0 71.0 570.0 571.0
+# ./images/robot_flow_pathologicalimage012_png.jpg 640 640 3
+68.0 72.0 570.0 570.0
+# ./images/robot_flow_pathologicalimage013_png.jpg 640 640 3
+65.0 70.0 567.0 569.0
+# ./images/robot_flow_pathologicalimage014_png.jpg 640 640 3
+69.0 74.0 565.0 573.0
+# ./images/robot_flow_pathologicalimage015_png.jpg 640 640 3
+67.0 72.0 570.0 570.0
+# ./images/robot_flow_pathologicalimage016_png.jpg 640 640 3
+68.0 71.0 571.0 572.0
+# ./images/robot_flow_pathologicalimage017_png.jpg 640 640 3
+65.0 70.0 573.0 575.0
+# ./images/robot_flow_pathologicalimage018_png.jpg 640 640 3
+64.0 70.0 571.0 571.0
+# ./images/robot_flow_pathologicalimage019_png.jpg 640 640 3
+70.0 72.0 574.0 569.0
+# ./images/robot_flow_pathologicalimage020_png.jpg 640 640 3
+66.0 71.0 568.0 568.0
+# ./images/robot_flow_pathologicalimage021_png.jpg 640 640 3
+67.0 73.0 562.0 571.0
+# ./images/robot_flow_pathologicalimage022_png.jpg 640 640 3
+67.0 71.0 576.0 571.0
+# ./images/robot_flow_pathologicalimage023_png.jpg 640 640 3
+26.0 41.0 580.0 588.0
+# ./images/robot_flow_perspectiveimage001.jpg 640 640 3
+205.0 261.0 358.0 377.0
+# ./images/robot_flow_perspectiveimage002.jpg 640 640 3
+255.0 274.0 369.0 426.0
+# ./images/robot_flow_perspectiveimage003.jpg 640 640 3
+252.0 256.0 363.0 408.0
+# ./images/robot_flow_perspectiveimage004.jpg 640 640 3
+236.0 243.0 389.0 353.0
+# ./images/robot_flow_perspectiveimage005.jpg 640 640 3
+248.0 295.0 393.0 394.0
+# ./images/robot_flow_perspectiveimage007.jpg 640 640 3
+239.0 248.0 328.0 390.0
+# ./images/robot_flow_perspectiveimage008.jpg 640 640 3
+238.0 254.0 318.0 389.0
+# ./images/robot_flow_perspectiveimage009.jpg 640 640 3
+258.0 254.0 320.0 379.0
+# ./images/robot_flow_perspectiveimage010.jpg 640 640 3
+290.0 259.0 348.0 385.0
+# ./images/robot_flow_perspectiveimage011.jpg 640 640 3
+291.0 253.0 344.0 377.0
+# ./images/robot_flow_perspectiveimage012.jpg 640 640 3
+267.0 302.0 387.0 349.0
+# ./images/robot_flow_perspectiveimage017.jpg 640 640 3
+193.0 195.0 427.0 378.0
+# ./images/robot_flow_perspectiveimage018.jpg 640 640 3
+259.0 190.0 449.0 426.0
+# ./images/robot_flow_perspectiveimage019.jpg 640 640 3
+202.0 212.0 378.0 441.0
+# ./images/robot_flow_perspectiveimage020.jpg 640 640 3
+215.0 219.0 385.0 438.0
+# ./images/robot_flow_perspectiveimage021.jpg 640 640 3
+205.0 224.0 361.0 437.0
+# ./images/robot_flow_perspectiveimage022.jpg 640 640 3
+221.0 298.0 432.0 448.0
+# ./images/robot_flow_perspectiveimage023.jpg 640 640 3
+231.0 196.0 446.0 336.0
+# ./images/robot_flow_perspectiveimage024.jpg 640 640 3
+201.0 192.0 325.0 383.0
+# ./images/robot_flow_perspectiveimage025.jpg 640 640 3
+227.0 195.0 341.0 384.0
+# ./images/robot_flow_perspectiveimage026.jpg 640 640 3
+247.0 187.0 347.0 379.0
+# ./images/robot_flow_perspectiveimage027.jpg 640 640 3
+205.0 290.0 398.0 384.0
+# ./images/robot_flow_perspectiveimage028.jpg 640 640 3
+273.0 203.0 362.0 388.0
+# ./images/robot_flow_perspectiveimage029.jpg 640 640 3
+277.0 206.0 360.0 392.0
+# ./images/robot_flow_photo1683806692-1-_jpeg.jpg 640 640 3
+156.0 92.0 508.0 427.0
+# ./images/robot_flow_photo1683806692-6-_jpeg.jpg 640 640 3
+277.0 352.0 334.0 389.0
+# ./images/robot_flow_photo1683806692-9-_jpeg.jpg 640 640 3
+176.0 326.0 285.0 408.0
+266.0 150.0 353.0 223.0
+# ./images/robot_flow_photo1683806693-2-_jpeg.jpg 640 640 3
+207.0 213.0 394.0 357.0
+# ./images/robot_flow_photo1683806693-3-_jpeg.jpg 640 640 3
+283.0 186.0 391.0 333.0
+# ./images/robot_flow_photo1683806693-4-_jpeg.jpg 640 640 3
+201.0 178.0 267.0 228.0
+447.0 169.0 509.0 220.0
+178.0 501.0 222.0 534.0
+593.0 572.0 638.0 618.0
+# ./images/robot_flow_photo1683806693-5-_jpeg.jpg 640 640 3
+244.0 239.0 362.0 329.0
+# ./images/robot_flow_photo1683806693-6-_jpeg.jpg 640 640 3
+229.0 290.0 366.0 396.0
+# ./images/robot_flow_photo1683806693-7-_jpeg.jpg 640 640 3
+265.0 54.0 345.0 164.0
+249.0 486.0 328.0 599.0
+# ./images/robot_flow_photo1683806693-8-_jpeg.jpg 640 640 3
+217.0 191.0 373.0 309.0
+# ./images/robot_flow_photo1683806693-9-_jpeg.jpg 640 640 3
+161.0 202.0 298.0 306.0
+# ./images/robot_flow_photo1683806693_jpeg.jpg 640 640 3
+205.0 228.0 380.0 345.0
+# ./images/robot_flow_photo1683806695-1-_jpeg.jpg 640 640 3
+249.0 519.0 319.0 567.0
+352.0 82.0 415.0 131.0
+159.0 526.0 193.0 550.0
+# ./images/robot_flow_photo1683806695-10-_jpeg.jpg 640 640 3
+90.0 219.0 395.0 447.0
+# ./images/robot_flow_photo1683806695-11-_jpeg.jpg 640 640 3
+159.0 288.0 341.0 430.0
+# ./images/robot_flow_photo1683806695-2-_jpeg.jpg 640 640 3
+221.0 194.0 281.0 282.0
+# ./images/robot_flow_photo1683806695-3-_jpeg.jpg 640 640 3
+303.0 201.0 381.0 301.0
+# ./images/robot_flow_photo1683806695-4-_jpeg.jpg 640 640 3
+266.0 177.0 458.0 322.0
+# ./images/robot_flow_photo1683806695-5-_jpeg.jpg 640 640 3
+127.0 167.0 437.0 499.0
+# ./images/robot_flow_photo1683806695-7-_jpeg.jpg 640 640 3
+184.0 249.0 445.0 415.0
+# ./images/robot_flow_photo1683871242-5-_jpeg.jpg 640 640 3
+312.0 229.0 380.0 311.0
+# ./images/robot_flow_photo1683871242-6-_jpeg.jpg 640 640 3
+98.0 314.0 196.0 430.0
+# ./images/robot_flow_photo1683871242-7-_jpeg.jpg 640 640 3
+296.0 154.0 387.0 283.0
+286.0 354.0 363.0 457.0
+# ./images/robot_flow_photo1683871242_jpeg.jpg 640 640 3
+81.0 94.0 293.0 359.0
+# ./images/robot_flow_photo1683871243-1-_jpeg.jpg 640 640 3
+301.0 235.0 364.0 276.0
+# ./images/robot_flow_photo1683871243-3-_jpeg.jpg 640 640 3
+263.0 192.0 372.0 271.0
+# ./images/robot_flow_photo1683871243-5-_jpeg.jpg 640 640 3
+163.0 167.0 286.0 327.0
+# ./images/robot_flow_photo_2023-03-19_13-03-31.jpg 640 640 3
+283.0 372.0 381.0 449.0
+# ./images/robot_flow_rotationsimage001.jpg 640 640 3
+128.0 271.0 294.0 396.0
+397.0 391.0 488.0 464.0
+443.0 277.0 519.0 336.0
+# ./images/robot_flow_rotationsimage002.jpg 640 640 3
+177.0 439.0 275.0 558.0
+169.0 99.0 345.0 330.0
+316.0 425.0 399.0 530.0
+# ./images/robot_flow_rotationsimage005.jpg 640 640 3
+208.0 372.0 401.0 520.0
+414.0 242.0 516.0 322.0
+268.0 202.0 354.0 267.0
+# ./images/robot_flow_rotationsimage006.jpg 640 640 3
+378.0 197.0 528.0 387.0
+230.0 148.0 304.0 248.0
+219.0 318.0 282.0 401.0
+# ./images/robot_flow_rotationsimage011.jpg 640 640 3
+397.0 299.0 576.0 431.0
+199.0 240.0 291.0 310.0
+162.0 366.0 245.0 429.0
+# ./images/robot_flow_rotationsimage012.jpg 640 640 3
+336.0 241.0 570.0 420.0
+128.0 278.0 246.0 373.0
+170.0 407.0 277.0 494.0
+# ./images/robot_flow_rotationsimage016.jpg 640 640 3
+347.0 309.0 469.0 472.0
+205.0 202.0 283.0 301.0
+173.0 371.0 236.0 451.0
+# ./images/robot_flow_rotationsimage021.jpg 640 640 3
+258.0 335.0 375.0 544.0
+372.0 85.0 458.0 208.0
+271.0 84.0 325.0 173.0
+# ./images/robot_flow_rotationsimage022.jpg 640 640 3
+66.0 273.0 300.0 425.0
+424.0 354.0 563.0 451.0
+421.0 255.0 516.0 315.0
+# ./images/robot_flow_rotationsimage029.jpg 640 640 3
+197.0 350.0 431.0 513.0
+425.0 245.0 524.0 301.0
+272.0 216.0 354.0 261.0
+# ./images/robot_flow_rotationsimage030.jpg 640 640 3
+212.0 353.0 464.0 531.0
+371.0 234.0 472.0 291.0
+211.0 225.0 296.0 271.0
+# ./images/robot_flow_rotationsimage031.jpg 640 640 3
+248.0 336.0 543.0 547.0
+326.0 216.0 445.0 288.0
+165.0 235.0 268.0 294.0
+# ./images/robot_flow_rotationsimage034.jpg 640 640 3
+354.0 280.0 559.0 401.0
+144.0 222.0 248.0 279.0
+68.0 320.0 174.0 387.0
+# ./images/robot_flow_rotationsimage035.jpg 640 640 3
+88.0 350.0 199.0 425.0
+120.0 241.0 226.0 302.0
+340.0 255.0 573.0 394.0
+# ./images/robot_flow_rotationsimage036.jpg 640 640 3
+310.0 237.0 564.0 390.0
+106.0 374.0 243.0 475.0
+78.0 261.0 214.0 347.0
+# ./images/robot_flow_rotationsimage037.jpg 640 640 3
+330.0 240.0 583.0 395.0
+93.0 311.0 244.0 417.0
+188.0 430.0 351.0 555.0
+# ./images/robot_flow_rotationsimage039.jpg 640 640 3
+192.0 326.0 379.0 426.0
+167.0 121.0 282.0 206.0
+384.0 160.0 523.0 251.0
+# ./images/robot_flow_rotationsimage043.jpg 640 640 3
+106.0 383.0 210.0 517.0
+219.0 65.0 354.0 292.0
+256.0 457.0 318.0 551.0
+# ./images/robot_flow_rotationsimage044.jpg 640 640 3
+200.0 71.0 331.0 290.0
+120.0 427.0 217.0 560.0
+269.0 452.0 330.0 548.0
+# ./images/robot_flow_shadowsimage001.jpg 640 640 3
+89.0 85.0 309.0 252.0
+447.0 227.0 573.0 321.0
+495.0 75.0 604.0 155.0
+# ./images/robot_flow_shadowsimage002.jpg 640 640 3
+105.0 322.0 293.0 571.0
+278.0 17.0 386.0 162.0
+102.0 1.0 193.0 97.0
+# ./images/robot_flow_shadowsimage003.jpg 640 640 3
+376.0 337.0 609.0 514.0
+98.0 253.0 231.0 354.0
+58.0 434.0 173.0 519.0
+# ./images/robot_flow_shadowsimage004.jpg 640 640 3
+260.0 440.0 454.0 636.0
+457.0 127.0 576.0 283.0
+273.0 70.0 369.0 197.0
+# ./images/robot_flow_shadowsimage005.jpg 640 640 3
+198.0 343.0 493.0 570.0
+# ./images/robot_flow_shadowsimage006.jpg 640 640 3
+3.0 361.0 123.0 578.0
+394.0 381.0 539.0 491.0
+# ./images/robot_flow_shadowsimage007.jpg 640 640 3
+203.0 381.0 256.0 422.0
+# ./images/robot_flow_shadowsimage008.jpg 640 640 3
+194.0 378.0 246.0 420.0
+# ./images/robot_flow_shadowsimage009.jpg 640 640 3
+340.0 237.0 448.0 313.0
+# ./images/robot_flow_shadowsimage010.jpg 640 640 3
+134.0 117.0 448.0 463.0
+# ./images/robot_flow_shadowsimage011.jpg 640 640 3
+139.0 141.0 531.0 494.0
+# ./images/robot_flow_shadowsimage012.jpg 640 640 3
+253.0 6.0 615.0 341.0
+# ./images/robot_flow_shadowsimage013.jpg 640 640 3
+298.0 258.0 635.0 619.0
+# ./images/robot_flow_shadowsimage014.jpg 640 640 3
+255.0 271.0 357.0 346.0
+# ./images/robot_flow_v2Email_png.jpg 640 640 3
+68.0 72.0 570.0 570.0
+# ./images/robot_flow_v2Event_png.jpg 640 640 3
+43.0 41.0 599.0 600.0
+# ./images/robot_flow_v2FaceBook_png.jpg 640 640 3
+68.0 71.0 569.0 573.0
+# ./images/robot_flow_v2Location_png.jpg 640 640 3
+69.0 70.0 570.0 572.0
+# ./images/robot_flow_v2MeCard-Address_png.jpg 640 640 3
+52.0 53.0 591.0 592.0
+# ./images/robot_flow_v2MeCard-Dates_png.jpg 640 640 3
+62.0 66.0 575.0 571.0
+# ./images/robot_flow_v2MeCard-Notes_png.jpg 640 640 3
+53.0 52.0 586.0 587.0
+# ./images/robot_flow_v2MeCard-POBOX_png.jpg 640 640 3
+46.0 42.0 596.0 598.0
+# ./images/robot_flow_v2MeCard-Phone_png.jpg 640 640 3
+57.0 55.0 581.0 583.0
+# ./images/robot_flow_v2Phone_png.jpg 640 640 3
+76.0 80.0 563.0 556.0
+# ./images/robot_flow_v2SMS-Text_png.jpg 640 640 3
+74.0 80.0 565.0 559.0
+# ./images/robot_flow_v2Twitter_png.jpg 640 640 3
+60.0 66.0 576.0 575.0
+# ./images/robot_flow_v2VCard-BasicWikipedia_png.jpg 640 640 3
+27.0 33.0 613.0 612.0
+# ./images/robot_flow_v2VCard-Encoding_png.jpg 640 640 3
+30.0 35.0 607.0 611.0
+# ./images/robot_flow_v2VCard-Title_png.jpg 640 640 3
+46.0 42.0 600.0 596.0
+# ./images/robot_flow_v2VCard-Type_png.jpg 640 640 3
+38.0 38.0 605.0 602.0
+# ./images/robot_flow_v2WIFI_png.jpg 640 640 3
+68.0 70.0 568.0 573.0
+# ./images/robot_flow_v2Website_png.jpg 640 640 3
+51.0 50.0 592.0 591.0
+# ./images/robot_flow_v3SMS-Text_png.jpg 640 640 3
+68.0 66.0 577.0 577.0
+# ./images/robot_flow_v3Twitter_png.jpg 640 640 3
+51.0 49.0 594.0 594.0
+# ./images/robot_flow_v3VCard-BasicWikipedia_png.jpg 640 640 3
+28.0 20.0 609.0 614.0
+# ./images/robot_flow_v3VCard-Encoding_png.jpg 640 640 3
+33.0 36.0 609.0 611.0
+# ./images/robot_flow_v3VCard-Title_png.jpg 640 640 3
+45.0 43.0 597.0 595.0
+# ./images/robot_flow_v3VCard-Type_png.jpg 640 640 3
+38.0 38.0 607.0 607.0
+# ./images/robot_flow_v3YouTube_png.jpg 640 640 3
+60.0 64.0 579.0 574.0
+# ./images/robot_flow_Special_0196.jpg 640 640 4
+390.0 302.0 449.0 474.0
+# ./images/robot_flow_Special_0199.jpg 640 640 4
+308.0 42.0 441.0 113.0
+# ./images/robot_flow_Special_0202.jpg 640 640 4
+472.0 89.0 576.0 124.0
+# ./images/robot_flow_Special_0205.jpg 640 640 4
+112.0 221.0 260.0 267.0
+110.0 487.0 261.0 533.0
+# ./images/robot_flow_Special_0207.jpg 640 640 4
+55.0 36.0 128.0 244.0
+59.0 375.0 130.0 589.0
+# ./images/robot_flow_Special_0210.jpg 640 640 4
+523.0 240.0 587.0 375.0
+# ./images/robot_flow_Special_0211.jpg 640 640 4
+527.0 254.0 592.0 388.0
+# ./images/robot_flow_Special_0228.jpg 640 640 4
+36.0 343.0 91.0 515.0
+32.0 145.0 84.0 306.0
+# ./images/robot_flow_Special_0229.jpg 640 640 4
+532.0 421.0 586.0 558.0
+388.0 42.0 549.0 77.0
+# ./images/robot_flow_Special_0239.jpg 640 640 4
+208.0 343.0 246.0 573.0
+202.0 29.0 242.0 266.0
+51.0 345.0 87.0 571.0
+48.0 35.0 85.0 264.0
+# ./images/robot_flow_Special_0243.jpg 640 640 4
+586.0 43.0 618.0 273.0
+585.0 368.0 617.0 601.0
+# ./images/robot_flow_Special_0248.jpg 640 640 4
+139.0 430.0 193.0 564.0
+# ./images/robot_flow_Special_0263.jpg 640 640 4
+40.0 273.0 107.0 607.0
+# ./images/robot_flow_Special_0264.jpg 640 640 4
+521.0 53.0 577.0 442.0
+# ./images/robot_flow_Special_0265.jpg 640 640 4
+102.0 39.0 408.0 103.0
+# ./images/robot_flow_Special_0266.jpg 640 640 4
+357.0 59.0 503.0 216.0
+# ./images/robot_flow_Special_0270.jpg 640 640 4
+154.0 548.0 523.0 586.0
+# ./images/robot_flow_Special_0286.jpg 640 640 4
+58.0 45.0 86.0 175.0
+# ./images/robot_flow_Special_0287.jpg 640 640 4
+57.0 45.0 85.0 175.0
+# ./images/robot_flow_Special_0293.jpg 640 640 4
+61.0 154.0 96.0 231.0
+62.0 468.0 96.0 545.0
+# ./images/robot_flow_Special_0294.jpg 640 640 4
+409.0 59.0 487.0 96.0
+94.0 63.0 172.0 98.0
+# ./images/robot_flow_Special_0299.jpg 640 640 4
+555.0 190.0 594.0 376.0
+# ./images/robot_flow_Special_0304.jpg 640 640 4
+36.0 304.0 74.0 464.0
+# ./images/robot_flow_Barcode171.jpg 640 640 5
+498.0 193.0 626.0 273.0
+# ./images/robot_flow_Barcode173.jpg 640 640 5
+307.0 69.0 358.0 146.0
+# ./images/robot_flow_Barcode178.jpg 640 640 5
+435.0 160.0 516.0 293.0
+# ./images/robot_flow_Barcode190.jpg 640 640 5
+355.0 236.0 444.0 372.0
+22.0 331.0 62.0 403.0
+# ./images/robot_flow_Barcode199.jpg 640 640 5
+502.0 476.0 625.0 548.0
+64.0 130.0 144.0 183.0
+# ./images/robot_flow_Barcode21.jpg 640 640 5
+295.0 474.0 382.0 529.0
+# ./images/robot_flow_Barcode22.jpg 640 640 5
+445.0 167.0 493.0 245.0
+# ./images/robot_flow_Barcode25.jpg 640 640 5
+279.0 291.0 366.0 429.0
+253.0 471.0 304.0 553.0
+# ./images/robot_flow_Barcode251.jpg 640 640 5
+348.0 93.0 405.0 181.0
+# ./images/robot_flow_Barcode275.jpg 640 640 5
+131.0 388.0 216.0 526.0
+# ./images/robot_flow_Barcode294.jpg 640 640 5
+137.0 252.0 187.0 334.0
+# ./images/robot_flow_Barcode306.jpg 640 640 5
+160.0 374.0 214.0 462.0
+200.0 151.0 287.0 285.0
+# ./images/robot_flow_Barcode307.jpg 640 640 5
+281.0 77.0 343.0 164.0
+# ./images/robot_flow_Barcode311.jpg 640 640 5
+275.0 556.0 324.0 632.0
+# ./images/robot_flow_Barcode314.jpg 640 640 5
+165.0 223.0 247.0 360.0
+560.0 460.0 606.0 546.0
+# ./images/robot_flow_Barcode334.jpg 640 640 5
+138.0 228.0 223.0 359.0
+# ./images/robot_flow_Barcode349.jpg 640 640 5
+353.0 169.0 465.0 241.0
+# ./images/robot_flow_Barcode359.jpg 640 640 5
+228.0 172.0 299.0 277.0
+# ./images/robot_flow_Barcode36.jpg 640 640 5
+374.0 308.0 477.0 459.0
+# ./images/robot_flow_Barcode44.jpg 640 640 5
+200.0 138.0 287.0 271.0
+# ./images/robot_flow_Barcode65.jpg 640 640 5
+393.0 285.0 478.0 421.0
+# ./images/robot_flow_Barcode77.jpg 640 640 5
+168.0 395.0 225.0 484.0
+# ./images/robot_flow_Barcode90.jpg 640 640 5
+166.0 234.0 225.0 322.0
+195.0 571.0 276.0 639.0
+# ./images/robot_flow_Barcode98.jpg 640 640 5
+276.0 30.0 332.0 110.0
+# ./images/robot_flow_F611061C-3130-4297-A2D2-5D82C7D5146B_jpeg.jpg 640 640 5
+262.0 233.0 332.0 280.0
+# ./images/robot_flow_IMG_1889_jpeg.jpg 640 640 5
+139.0 176.0 215.0 236.0
+# ./images/robot_flow_IMG_20230220_171135-1-.jpg 640 640 5
+214.0 170.0 344.0 344.0
+# ./images/robot_flow_IMG_20230220_171220-1-.jpg 640 640 5
+220.0 200.0 354.0 383.0
+# ./images/robot_flow_IMG_20230220_171342-1-.jpg 640 640 5
+242.0 305.0 383.0 411.0
+# ./images/robot_flow_IMG_20230220_172137-1-.jpg 640 640 5
+230.0 353.0 369.0 457.0
+# ./images/robot_flow_IMG_20230224_012711-1-.jpg 640 640 5
+225.0 309.0 381.0 424.0
+# ./images/robot_flow_IMG_20230226_233833.jpg 640 640 5
+240.0 293.0 333.0 364.0
+# ./images/robot_flow_IMG_20230301_170433.jpg 640 640 5
+264.0 225.0 381.0 375.0
+# ./images/robot_flow_IMG_20230304_185319.jpg 640 640 5
+241.0 341.0 386.0 456.0
+# ./images/robot_flow_IMG_2199_JPG.jpg 640 640 5
+103.0 225.0 192.0 346.0
+# ./images/robot_flow_Image01.jpg 640 640 5
+256.0 229.0 329.0 289.0
+259.0 444.0 336.0 506.0
+# ./images/robot_flow_Image10.jpg 640 640 5
+275.0 350.0 384.0 426.0
+# ./images/robot_flow_Image100.jpg 640 640 5
+177.0 120.0 282.0 275.0
+# ./images/robot_flow_Image102.jpg 640 640 5
+51.0 134.0 209.0 369.0
+# ./images/robot_flow_Image107.jpg 640 640 5
+181.0 305.0 348.0 488.0
+# ./images/robot_flow_Image114.jpg 640 640 5
+67.0 387.0 183.0 465.0
+# ./images/robot_flow_Image116.jpg 640 640 5
+116.0 393.0 414.0 562.0
+# ./images/robot_flow_Image140.jpg 640 640 5
+239.0 242.0 344.0 351.0
+# ./images/robot_flow_Image145.jpg 640 640 5
+49.0 442.0 214.0 566.0
+# ./images/robot_flow_Image148.jpg 640 640 5
+470.0 308.0 551.0 371.0
+# ./images/robot_flow_Image154.jpg 640 640 5
+252.0 274.0 307.0 351.0
+# ./images/robot_flow_Image159.jpg 640 640 5
+204.0 378.0 307.0 499.0
+# ./images/robot_flow_Image160.jpg 640 640 5
+457.0 253.0 575.0 399.0
+# ./images/robot_flow_Image162.jpg 640 640 5
+423.0 129.0 551.0 364.0
+# ./images/robot_flow_Image175.jpg 640 640 5
+299.0 267.0 406.0 408.0
+# ./images/robot_flow_Image183.jpg 640 640 5
+323.0 160.0 447.0 385.0
+# ./images/robot_flow_Image185.jpg 640 640 5
+468.0 36.0 606.0 208.0
+205.0 71.0 347.0 243.0
+# ./images/robot_flow_Image186.jpg 640 640 5
+140.0 314.0 259.0 403.0
+# ./images/robot_flow_Image192.jpg 640 640 5
+467.0 202.0 534.0 297.0
+# ./images/robot_flow_Image193.jpg 640 640 5
+201.0 38.0 445.0 201.0
+# ./images/robot_flow_Image200.jpg 640 640 5
+270.0 212.0 367.0 305.0
+# ./images/robot_flow_Image207.jpg 640 640 5
+266.0 398.0 376.0 507.0
+# ./images/robot_flow_Image209.jpg 640 640 5
+265.0 262.0 383.0 381.0
+# ./images/robot_flow_Image210.jpg 640 640 5
+320.0 131.0 410.0 233.0
+# ./images/robot_flow_Image211.jpg 640 640 5
+217.0 141.0 589.0 482.0
+# ./images/robot_flow_Image222.jpg 640 640 5
+359.0 365.0 464.0 520.0
+# ./images/robot_flow_Image223.jpg 640 640 5
+205.0 378.0 307.0 499.0
+# ./images/robot_flow_Image230.jpg 640 640 5
+183.0 431.0 270.0 630.0
+# ./images/robot_flow_Image243.jpg 640 640 5
+86.0 362.0 179.0 485.0
+# ./images/robot_flow_Image247.jpg 640 640 5
+365.0 410.0 418.0 487.0
+# ./images/robot_flow_Image249.jpg 640 640 5
+391.0 319.0 430.0 371.0
+# ./images/robot_flow_Image258.jpg 640 640 5
+334.0 373.0 430.0 509.0
+# ./images/robot_flow_Image264.jpg 640 640 5
+275.0 156.0 335.0 217.0
+# ./images/robot_flow_Image285.jpg 640 640 5
+276.0 156.0 335.0 218.0
+# ./images/robot_flow_Image302.jpg 640 640 5
+169.0 151.0 316.0 295.0
+# ./images/robot_flow_Image305.jpg 640 640 5
+174.0 69.0 253.0 184.0
+# ./images/robot_flow_Image326.jpg 640 640 5
+280.0 272.0 354.0 353.0
+# ./images/robot_flow_Image332.jpg 640 640 5
+439.0 327.0 560.0 412.0
+# ./images/robot_flow_Image338.jpg 640 640 5
+457.0 253.0 575.0 398.0
+# ./images/robot_flow_Image341.jpg 640 640 5
+338.0 154.0 436.0 287.0
+# ./images/robot_flow_Image347.jpg 640 640 5
+302.0 373.0 373.0 485.0
+# ./images/robot_flow_Image348.jpg 640 640 5
+299.0 267.0 406.0 409.0
+# ./images/robot_flow_Image48.jpg 640 640 5
+454.0 425.0 496.0 476.0
+# ./images/robot_flow_Image54.jpg 640 640 5
+305.0 211.0 368.0 303.0
+# ./images/robot_flow_Image88.jpg 640 640 5
+22.0 123.0 196.0 417.0
