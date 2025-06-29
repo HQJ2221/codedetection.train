@@ -31,10 +31,10 @@ def np_round(val, decimals=4):
     return val
 
 
-def get_gt_boxes(gt_dir):
+def get_gt_boxes(mat_path):
     """gt dir: (code_val.mat)"""
 
-    gt_mat = loadmat(os.path.join(gt_dir, 'output.mat'))
+    gt_mat = loadmat(mat_path)
 
     # FIXME: this is based on .mat file's structure
     facebox_list = gt_mat['face_bbx_list']
@@ -162,12 +162,12 @@ def voc_ap(rec, prec):
     return ap
 
 
-def wider_evaluation(pred, gt_path, iou_thresh=0.5):
+def wider_evaluation(pred, mat_path, iou_thresh=0.5):
     # pred = get_preds(pred)
     pred = norm_score(pred)
     thresh_num = 1000
     # thresh_num = 2000
-    facebox_list, event_list, file_list = get_gt_boxes(gt_path)
+    facebox_list, event_list, file_list = get_gt_boxes(mat_path)
     event_num = len(event_list)
     from multiprocessing import Pool
 

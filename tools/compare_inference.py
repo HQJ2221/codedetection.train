@@ -15,20 +15,14 @@ from tqdm import tqdm
 
 from code_evaluation import wider_evaluation
 
-
-def softmax(z):
-    assert len(z.shape) == 2
-    s = np.max(z, axis=1)
-    s = s[:, np.newaxis]  # necessary step to do broadcasting
-    e_x = np.exp(z - s)
-    div = np.sum(e_x, axis=1)
-    div = div[:, np.newaxis]  # dito
-    return e_x / div
-
-
-def sigmoid(x):
-    sig = np.where(x < 0, np.exp(x) / (1 + np.exp(x)), 1 / (1 + np.exp(-x)))
-    return sig
+#========= Definition of Const ==========#
+DATA_ROOT = './data/widerface'
+IMAGE_VAL_DIR = 'WIDER_val'
+IMAGE_TEST_DIR = 'WIDER_test'
+LABEL_DIR = 'labelv2'
+TEST_DIR = 'val/gt'
+TEST_MAT = 'bar.mat'
+#========================================#
 
 
 def nms(dets, thresh, opencv_mode=True):
@@ -271,21 +265,21 @@ class TimeEngine:
 class WIDERFace(data.Dataset):
     """Dataset class for WIDER Face dataset."""
 
-    def __init__(self, root, split='test'):
-        self.root = root
+    def __init__(self, split='test'):
+        self.root = DATA_ROOT
         self.split = split
         assert self.root is not None
 
         self.widerface_img_paths = {
-            'val': os.path.join(self.root, 'WIDER_val', 'images'),
-            'test': os.path.join(self.root, 'WIDER_test', 'images')
+            'val': os.path.join(self.root, IMAGE_VAL_DIR, 'images'),
+            'test': os.path.join(self.root, IMAGE_TEST_DIR, 'images')
         }
 
         self.widerface_split_fpaths = {
             'val':
-            os.path.join(self.root, 'wider_face_split', 'wider_face_val.mat'),
+            os.path.join(self.root, 'wider_face_split', 'wider_face_val.mat'),  # TODO: this file should be replaced
             'test':
-            os.path.join(self.root, 'labelv2/val/gt', 'output.mat')
+            os.path.join(self.root, LABEL_DIR, TEST_DIR, TEST_MAT)
         }
 
         self.img_list, self.num_img = self.load_list()
@@ -801,14 +795,14 @@ def onnx_eval(detector,
               image=None,
               out_path=None):
     if eval:
-        widerface_root = './data/widerface/'
-        testloader = WIDERFace(split='test', root=widerface_root)
+        testloader = WIDERFace(split='test')
         results = {}
         # 计算模型内推理时间
         time_in_model = 0
 
         for idx in tqdm(range(len(testloader))):
             img, event_name, img_name = testloader[idx]
+            print(img_name)
             xywhs, kpss, inf_time = detector.detect(
                 img, score_thresh=score_thresh, mode=mode)
             time_in_model += inf_time  # 计算模型内推理时间
@@ -819,7 +813,7 @@ def onnx_eval(detector,
             if event_name not in results:
                 results[event_name] = {}
             results[event_name][img_name.rstrip('.jpg')] = xywhs
-        
+
         run_epochs = 1
         # run_epochs = detector.time_engine.container.get('forward_run').epochs
         # print(f'Eval in {run_epochs}:')
@@ -831,7 +825,7 @@ def onnx_eval(detector,
 
         ap = wider_evaluation(
             pred=results,
-            gt_path=os.path.join(widerface_root, 'labelv2', 'val', 'gt'),)
+            mat_path=os.path.join(DATA_ROOT, LABEL_DIR, TEST_DIR, TEST_MAT),)
         
         print(f'\033[34mAvg time for each img in model: {time_in_model_per_img:.6f} sec')
         print(f'FPS: {1 / time_in_model_per_img:.6f}')
