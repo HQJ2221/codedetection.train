@@ -1,0 +1,61 @@
+% 读取文件
+filename = 'all.txt'; % 替换为你上传的文件名
+fileID = fopen(filename, 'r');
+lines = textscan(fileID, '%s', 'Delimiter', '\n');
+fclose(fileID);
+
+% 初始化变量
+file_list = {}; % 用于存储文件路径
+face_bbx_list = {}; % 用于存储每个文件对应的边框
+
+% 逐行解析文件
+current_file = ''; % 当前文件路径
+current_bboxes = []; % 当前文件的边框
+
+for i = 1:length(lines{1})
+    line = strtrim(lines{1}{i});
+    
+    % 处理图片路径行（以 # 开头的行为图片路径）
+    if startsWith(line, '#')
+        % 如果已经有图片路径和边框数据，则保存它们
+        if ~isempty(current_file) && ~isempty(current_bboxes)
+            file_list{end+1} = current_file; % 存储当前文件名
+            face_bbx_list{end+1} = current_bboxes; % 存储边框数据
+        end
+        
+        % 去除开头的 '# ' 和路径前缀 './images/'
+        line = strrep(line, '# ./images/', ''); % 删除 '# ./images/' 前缀
+
+        % 提取文件路径，只保留文件名部分
+        current_file = strtok(line, ' '); % 获取文件路径，不包括后面的 "640 360 0" 等信息
+        
+        % 去掉文件名中的 '.jpg' 后缀
+        current_file = strrep(current_file, '.jpg', ''); % 删除 '.jpg' 后缀
+        
+        % 清空当前的边框列表
+        current_bboxes = []; 
+    else
+        % 解析边框数据，提取前4个值（x1, y1, x2, y2）
+        bbox = str2double(strsplit(line));
+        current_bboxes = [current_bboxes; bbox(1:4)]; % 将当前边框数据添加到列表中
+    end
+end
+
+% 处理最后一个图片的边框数据
+if ~isempty(current_file) && ~isempty(current_bboxes)
+    file_list{end+1} = current_file;
+    face_bbx_list{end+1} = current_bboxes;
+end
+
+% 创建一个包含所有图片的事件列表
+event_list = {'images'}; % 可以根据需要修改
+
+% 将 file_list 修改为 1x1 的结构，点开后是 nx1 的单元格数组
+file_list = {file_list'}; % 将 file_list 包装成 1x1 单元格数组，内容是 nx1 的单元格数组
+
+% 将 face_bbx_list 修改为 1x1 的结构，点开后是 nx1 的单元格数组
+face_bbx_list = {face_bbx_list'}; % 将 face_bbx_list 包装成 1x1 单元格数组，内容是 nx1 的单元格数组
+
+% 将文件名和边框数据保存为 .mat 文件
+save('output.mat', 'file_list', 'face_bbx_list', 'event_list');
+

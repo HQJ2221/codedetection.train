@@ -201,7 +201,6 @@ def wider_evaluation(pred, mat_path, iou_thresh=0.5):
             ignore = np.ones(gt_boxes.shape[0], dtype=np.int32)
             # pred_info = np_round(pred_info, 4)
             # gt_boxes = np_round(gt_boxes, 4)
-
             pred_recall, proposal_list = image_eval(
                 pred_info, gt_boxes, ignore, iou_th, mpp)
 

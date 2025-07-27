@@ -21,7 +21,7 @@ IMAGE_VAL_DIR = 'WIDER_val'
 IMAGE_TEST_DIR = 'WIDER_test'
 LABEL_DIR = 'labelv2'
 TEST_DIR = 'val/gt'
-TEST_MAT = 'bar.mat'
+TEST_MAT = 'qr.mat'
 #========================================#
 
 
@@ -802,7 +802,9 @@ def onnx_eval(detector,
 
         for idx in tqdm(range(len(testloader))):
             img, event_name, img_name = testloader[idx]
-            print(img_name)
+            if img is None: 
+                print("None")
+                print(img_name)
             xywhs, kpss, inf_time = detector.detect(
                 img, score_thresh=score_thresh, mode=mode)
             time_in_model += inf_time  # 计算模型内推理时间
