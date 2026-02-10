@@ -1,15 +1,10 @@
 # Code Detection(draft ver.)
 
-- This repo is just for test and share in my 2025 Spring research.
-- It is still being improved, remaining unsafe for use.
-
 ## About
 
-> Codes 99.99% stem from repo [libfacedetection.train](https://github.com/ShiqiYu/libfacedetection.train)
+> Codes mostly stem from repo [libfacedetection.train](https://github.com/ShiqiYu/libfacedetection.train)
 > 
-> My team just modify a little bit to make it compact for qrcode detection and support multi-class training.
-> 
-> Thanks for all previous work by all geniuses!
+> My team modify part of the framework to make it compact for graphic code detection and support multi-class training.
 >
 > Please check part of the detail [here](https://github.com/HQJ2221/codedetection.train/blob/main/report.md).
 
@@ -78,5 +73,6 @@ results = multiclass_nms(
     max_num=100,
 )
 ```
+
 
 

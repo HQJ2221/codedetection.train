@@ -10,6 +10,8 @@
 |**1D Barcode**(cls: 1)|5614 + 428|:one:[Brcode-qrcode-kuihuama Repo](https://github.com/simplew2011/barcode_qrcode_kuihuama)<br/>:two:WeChat Proprietary Dataset(private)<br/>:three:[Quick Browser and Smart Inference(barcode_bb)](https://zenodo.org/records/13586402) 【[Download](https://zenodo.org/records/13586402/files/barcode_bb.zip?download=1)】|
 |**Kuihua Code**(cls: 2)|7194 + 203|same as barcode|
 |**QR Code**(cls: 3)|5792 + 1134|same as barcode|
+|**PDF417**(cls: 4)|-|same as barcode|
+|**Datamatrix**(cls: 5)|-|same as barcode|
 
 > For the dataset of `Brcode-qrcode-kuihuama Repo`: It's a combination of multiple 1D barcode/QR code datasets collected by [simplew2011](https://github.com/simplew2011), and one of its reference is [BenSouchet/barcode-datasets](https://github.com/BenSouchet/barcode-datasets) which include many popular 1D Barcode dataset(e.g. `InventBar`, `ParcelBar`, `SBD`, `Muenster BarcodeDB`)
 >
@@ -47,4 +49,5 @@
 [src_X] [src_Y] [dst_X] [dst_Y] [cls] /* one target */
 [src_X] [src_Y] [dst_X] [dst_Y] [cls] /* if exists multi-target */
 ```
+
 
