@@ -112,7 +112,7 @@ model = dict(
     neck=dict(type='TFPN', in_channels=[64, 64, 64], out_idx=[0, 1, 2]),
     bbox_head=dict(
         type='YuNet_Head',
-        num_classes=3,  # yunet for code detection need 3 classes
+        num_classes=6,  # yunet for code detection need 3 classes
         in_channels=64,
         shared_stacked_convs=1,
         stacked_convs=0,
@@ -126,7 +126,7 @@ model = dict(
             loss_weight=1.0),
         loss_bbox=dict(type='EIoULoss', loss_weight=5.0, reduction='sum'),
         use_kps=True,
-        kps_num=4,  # qrcode use 3 kps
+        kps_num=4, 
         loss_kps=dict(
             type='SmoothL1Loss', beta=0.1111111111111111, loss_weight=0.1),
         loss_obj=dict(

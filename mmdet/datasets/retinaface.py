@@ -17,7 +17,7 @@ except AssertionError:
 @DATASETS.register_module()
 class RetinaFaceDataset(CustomDataset):
 
-    CLASSES = ('qrcode', 'barcode', 'aruco')
+    CLASSES = ('aruco', 'barcode', 'kuihua', 'qrcode', 'pdf417', 'datamatrix')
 
     def __init__(self, min_size=None, **kwargs):
         self.NK = 4
