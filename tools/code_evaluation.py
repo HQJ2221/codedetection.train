@@ -11,6 +11,15 @@ import numpy as np
 import tqdm
 from scipy.io import loadmat
 
+CODE_TYPES = {
+    0: 'aruco',
+    1: 'barcode',
+    2: 'kuihua',
+    3: 'qrcode',
+    4: 'pdf417',
+    5: 'datamatrix',
+}
+
 def bbox_overlap(a, b):
     x1 = np.maximum(a[:, 0], b[0])
     y1 = np.maximum(a[:, 1], b[1])

@@ -11,6 +11,14 @@ from mmcv import Config, DictAction
 
 from mmdet.core.export import build_model_from_cfg, preprocess_example_input
 
+"""
+python tools/yunet2onnx.py \
+    ./configs/yunet_n.py \
+    ./work_dirs/yunet_n/latest.pth \
+    --output-file ./onnx/yunet_n.onnx
+"""
+
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Convert MMDetection models to ONNX')

@@ -6,8 +6,8 @@ from tqdm import tqdm
 import cv2
 import scipy.io
 import numpy as np
-from code_evaluation import wider_evaluation
-from qbar_model import *
+from .code_evaluation import wider_evaluation
+from .qbar_model import *
 
 
 class WIDERFace:

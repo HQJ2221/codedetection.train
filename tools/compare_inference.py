@@ -13,7 +13,7 @@ import scipy
 import torch.utils.data as data
 from tqdm import tqdm
 
-from code_evaluation import wider_evaluation
+from tools.code_evaluation import wider_evaluation, CODE_TYPES
 
 #========= Definition of Const ==========#
 DATA_ROOT = './data/widerface'
@@ -21,9 +21,8 @@ IMAGE_VAL_DIR = 'WIDER_val'
 IMAGE_TEST_DIR = 'WIDER_test'
 LABEL_DIR = 'labelv2'
 TEST_DIR = 'val/gt'
-TEST_MAT = 'qr.mat'
+TEST_MAT = 'output.mat'
 #========================================#
-
 
 def nms(dets, thresh, opencv_mode=True):
     if opencv_mode:
@@ -804,7 +803,7 @@ def onnx_eval(detector,
             img, event_name, img_name = testloader[idx]
             if img is None: 
                 print("None")
-                print(img_name)
+                print(event_name, img_name)
             xywhs, kpss, inf_time = detector.detect(
                 img, score_thresh=score_thresh, mode=mode)
             time_in_model += inf_time  # 计算模型内推理时间
@@ -892,6 +891,11 @@ def parse_args():
         type=float,
         default=0.02,
         help='tresh to score filter')
+    parser.add_argument(
+        '--test-type',
+        type=int,
+        default=-1,
+    )
 
     args = parser.parse_args()
     return args

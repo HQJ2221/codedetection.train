@@ -1,4 +1,4 @@
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0005)
+optimizer = dict(type='SGD', lr=6e-4, momentum=0.9, weight_decay=0.0005)
 optimizer_config = dict(grad_clip=None)
 
 lr_mult = 8
@@ -80,7 +80,7 @@ data = dict(
     test=dict(
         type='RetinaFaceDataset',
         ann_file='data/widerface/labelv2/val/labelv2.txt',
-        img_prefix='data/widerface/WIDER_val/images/',
+        img_prefix='data/widerface/WIDER_test/images/',
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(

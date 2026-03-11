@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-from nms import multiclass_nms  # 确保你项目中有这个文件
+from .nms import multiclass_nms  # 确保你项目中有这个文件
 
 def distance2bbox(points, distance, max_shape=None):
     """Decode distance prediction to bounding box.
