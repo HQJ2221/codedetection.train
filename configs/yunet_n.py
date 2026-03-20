@@ -31,7 +31,7 @@ data = dict(
     workers_per_gpu=4,
     train=dict(
         type='RetinaFaceDataset',
-        ann_file='data/widerface/labelv2/train/labelv2.txt',
+        ann_file='data/widerface/labelv2/train/labelv2_all.txt',
         img_prefix='data/widerface/WIDER_train/images/',
         pipeline=[
             dict(type='LoadImageFromFile', to_float32=True),
@@ -56,7 +56,7 @@ data = dict(
         ]),
     val=dict(
         type='RetinaFaceDataset',
-        ann_file='data/widerface/labelv2/val/labelv2.txt',
+        ann_file='data/widerface/labelv2/val/labelv2_all.txt',
         img_prefix='data/widerface/WIDER_val/images/',
         pipeline=[
             dict(type='LoadImageFromFile'),
@@ -79,7 +79,7 @@ data = dict(
         ]),
     test=dict(
         type='RetinaFaceDataset',
-        ann_file='data/widerface/labelv2/val/labelv2.txt',
+        ann_file='data/widerface/labelv2/val/labelv2_all.txt',
         img_prefix='data/widerface/WIDER_test/images/',
         pipeline=[
             dict(type='LoadImageFromFile'),

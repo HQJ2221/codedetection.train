@@ -15,13 +15,18 @@ from tqdm import tqdm
 
 from tools.code_evaluation import wider_evaluation, CODE_TYPES
 
+"""
+Usage:
+python tools/compare_inference.py onnx/yunet_n.onnx --eval --mode 640,640 --score_thresh 0.2 --nms_thresh 0.45
+"""
+
 #========= Definition of Const ==========#
 DATA_ROOT = './data/widerface'
 IMAGE_VAL_DIR = 'WIDER_val'
 IMAGE_TEST_DIR = 'WIDER_test'
 LABEL_DIR = 'labelv2'
 TEST_DIR = 'val/gt'
-TEST_MAT = 'output.mat'
+TEST_MAT = 'output_qrcode.mat'
 #========================================#
 
 def nms(dets, thresh, opencv_mode=True):

@@ -29,75 +29,56 @@ class RetinaFaceDataset(CustomDataset):
     def _parse_ann_line(self, line):
         values = [float(x) for x in line.strip().split()]
         bbox = np.array(values[0:4], dtype=np.float32)
+
+        if len(values) < 5:
+            raise ValueError(f"标注行必须包含类别信息: {line}")
+        cat_idx = int(values[4])
+        cat = self.CLASSES[cat_idx]  # 转换为类别名称
+
+        # 关键点初始化为全零（可根据需要扩展）
         kps = np.zeros((self.NK, 3), dtype=np.float32)
+
         ignore = False
-        if self.min_size is not None:
-            assert not self.test_mode
+        if self.min_size is not None and not self.test_mode:
             w = bbox[2] - bbox[0]
             h = bbox[3] - bbox[1]
             if w < self.min_size or h < self.min_size:
                 ignore = True
-        if len(values) > 4:
-            if len(values) > 5:
-                kps = np.array(
-                    values[4:16], dtype=np.float32).reshape((self.NK, 3))
-                for li in range(kps.shape[0]):
-                    if (kps[li, :] == -1).all():
-                        kps[li][2] = 0.0  # weight = 0, ignore
-                    else:
-                        assert kps[li][2] >= 0
-                        kps[li][2] = 1.0  # weight
 
-            else:
-                if not ignore:
-                    ignore = (values[4] == 1)
-        else:
-            assert self.test_mode
+        # 若行中有更多值，可在此扩展关键点解析（当前忽略）
+        # if len(values) > 5:
+        #     # 可添加关键点解析逻辑...
 
-        return dict(bbox=bbox, kps=kps, ignore=ignore)
+        return dict(bbox=bbox, kps=kps, ignore=ignore, cat=cat)
 
     def load_annotations(self, ann_file):
-        """Load annotation from COCO style annotation file.
-
-        Args:
-            ann_file (str): Path of annotation file.
-
-        Returns:
-            list[dict]: Annotation info from COCO api.
-        """
+        """加载新格式的标注文件"""
         name = None
         bbox_map = {}
         for line in open(ann_file, 'r'):
             line = line.strip()
             if line.startswith('#'):
-                value = line[1:].strip().split()
-                name = value[0]
-                width = int(value[1])
-                height = int(value[2])
-                # read image lebel
-                img_label = int(value[3])
-                bbox_map[name] = dict(width=width, height=height, label=img_label, objs=[])
+                # 头部： # <img_path> <width> <height>
+                parts = line[1:].strip().split()
+                name = parts[0]
+                width = int(parts[1])
+                height = int(parts[2])
+                bbox_map[name] = dict(width=width, height=height, objs=[])
                 continue
             assert name is not None
             assert name in bbox_map
             bbox_map[name]['objs'].append(line)
+
         print('origin image size', len(bbox_map))
         data_infos = []
-        for name in bbox_map:
-            item = bbox_map[name]
+        for name, item in bbox_map.items():
             width = item['width']
             height = item['height']
-            # get images label
-            img_label = item['label']
-            vals = item['objs']
             objs = []
-            for line in vals:
+            for line in item['objs']:
                 data = self._parse_ann_line(line)
-                if data is None:
-                    continue
-                # read label, turn to type name
-                data['cat'] = self.CLASSES[img_label]
-                objs.append(data)  # data is (bbox, kps, cat)
+                if data is not None:
+                    objs.append(data)
             if len(objs) == 0 and not self.test_mode:
                 continue
             data_infos.append(
@@ -105,14 +86,7 @@ class RetinaFaceDataset(CustomDataset):
         return data_infos
 
     def get_ann_info(self, idx):
-        """Get COCO annotation by index.
-
-        Args:
-            idx (int): Index of data.
-
-        Returns:
-            dict: Annotation info of specified index.
-        """
+        """生成与MMDetection兼容的标注字典"""
         data_info = self.data_infos[idx]
 
         bboxes = []
@@ -132,20 +106,14 @@ class RetinaFaceDataset(CustomDataset):
                 bboxes.append(bbox)
                 labels.append(label)
                 keypointss.append(keypoints)
-        if not bboxes:
-            bboxes = np.zeros((0, 4))
-            labels = np.zeros((0, ))
-            keypointss = np.zeros((0, self.NK, 3))
-        else:
-            bboxes = np.array(bboxes, ndmin=2)
-            labels = np.array(labels)
-            keypointss = np.array(keypointss, ndmin=3)
-        if not bboxes_ignore:
-            bboxes_ignore = np.zeros((0, 4))
-            labels_ignore = np.zeros((0, ))
-        else:
-            bboxes_ignore = np.array(bboxes_ignore, ndmin=2)
-            labels_ignore = np.array(labels_ignore)
+
+        # 转换为numpy数组，保证维度一致
+        bboxes = np.array(bboxes, ndmin=2) if bboxes else np.zeros((0, 4))
+        labels = np.array(labels) if labels else np.zeros((0,))
+        keypointss = np.array(keypointss, ndmin=3) if keypointss else np.zeros((0, self.NK, 3))
+        bboxes_ignore = np.array(bboxes_ignore, ndmin=2) if bboxes_ignore else np.zeros((0, 4))
+        labels_ignore = np.array(labels_ignore) if labels_ignore else np.zeros((0,))
+
         ann = dict(
             bboxes=bboxes.astype(np.float32),
             labels=labels.astype(np.int64),
