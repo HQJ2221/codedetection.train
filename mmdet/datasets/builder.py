@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader
 
 from .samplers import (ClassAwareSampler, DistributedGroupSampler,
                        DistributedSampler, GroupSampler, InfiniteBatchSampler,
-                       InfiniteGroupBatchSampler)
+                       InfiniteGroupBatchSampler, BalancedSampler)
 
 if platform.system() != 'Windows':
     # https://github.com/pytorch/pytorch/issues/973
@@ -94,6 +94,7 @@ def build_dataloader(dataset,
                      runner_type='EpochBasedRunner',
                      persistent_workers=False,
                      class_aware_sampler=None,
+                     balance_policy=None,
                      **kwargs):
     """Build PyTorch DataLoader.
 
@@ -176,6 +177,9 @@ def build_dataloader(dataset,
             else:
                 sampler = DistributedSampler(
                     dataset, world_size, rank, shuffle=False, seed=seed)
+        elif balance_policy is not None:
+            print('Using BalancedSampler with balance_policy:', balance_policy)
+            sampler = BalancedSampler(dataset, ratios=balance_policy)
         else:
             sampler = GroupSampler(dataset,
                                    samples_per_gpu) if shuffle else None

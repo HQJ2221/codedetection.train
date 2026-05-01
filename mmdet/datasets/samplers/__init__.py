@@ -3,8 +3,10 @@ from .class_aware_sampler import ClassAwareSampler
 from .distributed_sampler import DistributedSampler
 from .group_sampler import DistributedGroupSampler, GroupSampler
 from .infinite_sampler import InfiniteBatchSampler, InfiniteGroupBatchSampler
+from .weighted_sampler import BalancedSampler
 
 __all__ = [
     'DistributedSampler', 'DistributedGroupSampler', 'GroupSampler',
-    'InfiniteGroupBatchSampler', 'InfiniteBatchSampler', 'ClassAwareSampler'
+    'InfiniteGroupBatchSampler', 'InfiniteBatchSampler', 'ClassAwareSampler',
+    'BalancedSampler'
 ]

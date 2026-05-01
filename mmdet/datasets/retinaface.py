@@ -45,10 +45,6 @@ class RetinaFaceDataset(CustomDataset):
             if w < self.min_size or h < self.min_size:
                 ignore = True
 
-        # 若行中有更多值，可在此扩展关键点解析（当前忽略）
-        # if len(values) > 5:
-        #     # 可添加关键点解析逻辑...
-
         return dict(bbox=bbox, kps=kps, ignore=ignore, cat=cat)
 
     def load_annotations(self, ann_file):
@@ -75,14 +71,26 @@ class RetinaFaceDataset(CustomDataset):
             width = item['width']
             height = item['height']
             objs = []
+            cats = []
             for line in item['objs']:
                 data = self._parse_ann_line(line)
                 if data is not None:
                     objs.append(data)
+                    cats.append(data['cat'])
             if len(objs) == 0 and not self.test_mode:
                 continue
+            if len(set(cats)) == 1:
+                img_type = self.cat2label[cats[0]]
+            else:
+                img_type = len(self.CLASSES)
             data_infos.append(
-                dict(filename=name, width=width, height=height, objs=objs))
+                dict(filename=name, width=width, height=height, objs=objs, img_type=img_type))
+        
+        # For sampler use (see mmdet/datasets/samplers/weighted_sampler.py)
+        self.type_indices = {i: [] for i in range(7)}
+        for idx, info in enumerate(data_infos):
+            self.type_indices[info['img_type']].append(idx)
+        
         return data_infos
 
     def get_ann_info(self, idx):

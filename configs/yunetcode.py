@@ -21,19 +21,24 @@ load_from = None
 resume_from = None
 workflow = [('train', 1)]
 dataset_type = 'RetinaFaceDataset'
-data_root = 'data/widerface/'
-train_root = 'data/widerface/'
-val_root = 'data/widerface/'
+data_root = 'data/yunetcode/'
+img_root = 'images/'
+train_ann_file = 'labelv2/train/labels.txt'
+val_ann_file = 'labelv2/valid/labels.txt'
+test_ann_file = 'labelv2/test/labels.txt'
 img_norm_cfg = dict(mean=[0., 0., 0.], std=[1., 1., 1.], to_rgb=False)
 
 data = dict(
     samples_per_gpu=16,
     workers_per_gpu=4,
+    train_dataloader=dict(
+        shuffle=False,
+        balance_policy={0: 0.15, 1: 0.15, 2: 0.15, 3: 0.15, 4: 0.15, 5: 0.15, 6: 0.10}
+    ),
     train=dict(
         type='RetinaFaceDataset',
-        ann_file='data/widerface/labelv2/train/labelv3_all.txt',
-        # img_prefix='data/widerface/WIDER_train/images/',
-        img_prefix='data/widerface/WIDER_train/',
+        ann_file=data_root + train_ann_file,
+        img_prefix=data_root + img_root,
         pipeline=[
             dict(type='LoadImageFromFile', to_float32=True),
             dict(type='LoadAnnotations', with_bbox=True, with_keypoints=False),
@@ -51,14 +56,13 @@ data = dict(
             dict(
                 type='Collect',
                 keys=[
-                    'img', 'gt_bboxes', 'gt_labels', 'gt_bboxes_ignore',
-                    'gt_keypointss'
+                    'img', 'gt_bboxes', 'gt_labels', 'gt_bboxes_ignore'
                 ])
         ]),
     val=dict(
         type='RetinaFaceDataset',
-        ann_file='data/widerface/labelv2/val/labelv3_all.txt',
-        img_prefix='data/widerface/WIDER_val/images/',
+        ann_file=data_root + val_ann_file,
+        img_prefix=data_root + img_root,
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(
@@ -80,8 +84,8 @@ data = dict(
         ]),
     test=dict(
         type='RetinaFaceDataset',
-        ann_file='data/widerface/labelv2/val/labelv3_all.txt',
-        img_prefix='data/widerface/WIDER_test/images/',
+        ann_file=data_root + test_ann_file,
+        img_prefix=data_root + img_root,
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(
@@ -125,11 +129,11 @@ model = dict(
             use_sigmoid=True,
             reduction='sum',
             loss_weight=1.0),
-        loss_bbox=dict(type='EIoULoss', loss_weight=5.0, reduction='sum'),
-        use_kps=True,
-        kps_num=4, 
+        loss_bbox=dict(type='EIoULoss', loss_weight=8.0, reduction='sum'),
+        use_kps=False,
+        kps_num=0, 
         loss_kps=dict(
-            type='SmoothL1Loss', beta=0.1111111111111111, loss_weight=0.1),
+            type='SmoothL1Loss', beta=0.1111111111111111, loss_weight=0.0),
         loss_obj=dict(
             type='CrossEntropyLoss',
             use_sigmoid=True,
@@ -144,5 +148,5 @@ model = dict(
         nms=dict(type='nms', iou_threshold=0.45),
         max_per_img=-1,
     ))
-evaluation = dict(interval=1001, metric='mAP')
-# evaluation = dict(interval=1001, metric='mAP', classwise=True)
+# evaluation = dict(interval=1001, metric='mAP')
+evaluation = dict(interval=500, metric='mAP', classwise=True)
