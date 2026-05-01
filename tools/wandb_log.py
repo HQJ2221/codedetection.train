@@ -5,7 +5,7 @@ Usage:
     python tools/wandb_log.py <json_file> --project <project_name> [--run_name <name>] [--entity <entity>]
 
 Example:
-    python tools/wandb_log.py work_dirs/yunet_n/20250311_123456.log.json --run_name face-detection
+    python tools/wandb_log.py work_dirs/yunetcode/20260411_132529.log.json --run_name e120_rand_0411-1325
 """
 
 import argparse

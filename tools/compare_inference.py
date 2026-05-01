@@ -26,7 +26,7 @@ IMAGE_VAL_DIR = 'WIDER_val'
 IMAGE_TEST_DIR = 'WIDER_test'
 LABEL_DIR = 'labelv2'
 TEST_DIR = 'val/gt'
-TEST_MAT = 'output_qrcode.mat'
+TEST_MAT = 'output.mat'
 #========================================#
 
 def nms(dets, thresh, opencv_mode=True):
